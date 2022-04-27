@@ -1,3 +1,13 @@
 :root {
     --main-bg-color: lightblue;
+    --main-txt-color: #202124;
+    
+    /* Mail App */
+    --star-color: #f4c749;
+    --subtitle-txt: #5f6368;
+    --read-bg: #f4f7f7;
+    --read-subject:#202124;
+    --selected-folder-bg: #fce8e6;
+    --selected-folder-txt: #d93025;
+
 }
