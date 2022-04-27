@@ -1,3 +1,22 @@
 .note-preview {
-    
+    border: 1px rgba(224, 224, 224, 1) solid;
+    width: 240px;
+    border-radius: 6px;
+    font-size: 0.875rem;
+}
+
+.note-preview > *:not(img) {
+    padding: 0 16px;
+}
+
+.note-preview h2 {
+    font-size: 1rem;
+    margin-top: 12px;
+    margin-bottom: 10px;
+}
+
+
+
+.note-preview .todo-content {
+    padding: 0 16px;
 }

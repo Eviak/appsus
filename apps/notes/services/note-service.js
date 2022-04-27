@@ -2,9 +2,26 @@ export const noteService = {
     query,
 }
 
-const NOTE_TYPES = ['note-txt', 'note-img', 'note-video', 'note-todos']
-
-const gNotes = [{
+const gNotes = [
+    {
+        id: "n101",
+        type: "note-txt",
+        isPinned: true,
+        info: { 
+            txt: "Fullstack Me Baby!",
+            title: "Fullstack text note",
+        }
+    },
+    {
+        id: "n101",
+        type: "note-txt",
+        isPinned: true,
+        info: { 
+            txt: "Fullstack Me Baby!",
+            title: "Fullstack text note",
+        }
+    },
+    {
         id: "n101",
         type: "note-txt",
         isPinned: true,
@@ -17,8 +34,39 @@ const gNotes = [{
         id: "n102",
         type: "note-img",
         info: {
-            url: "http://some-img/me",
+            url: "https://cdn.webshopapp.com/shops/77844/files/349917232/image.jpg",
             title: "Bobi and Me",
+            txt: "My image text BLah my image text BLah my image text BLah my image text BLah my image text BLah my image text BLah my image text BLah "
+        },
+        style: { backgroundColor: "#00d" }
+    },
+    {
+        id: "n102",
+        type: "note-img",
+        info: {
+            url: "https://cdn.webshopapp.com/shops/77844/files/349917232/image.jpg",
+            title: "Bobi and Me",
+            txt: "My image text BLah my image text BLah my image text BLah my image text BLah my image text BLah my image text BLah my image text BLah "
+        },
+        style: { backgroundColor: "#00d" }
+    },
+    {
+        id: "n102",
+        type: "note-img",
+        info: {
+            url: "https://cdn.webshopapp.com/shops/77844/files/349917232/image.jpg",
+            title: "Bobi and Me",
+            txt: "My image text BLah my image text BLah my image text BLah my image text BLah my image text BLah my image text BLah my image text BLah "
+        },
+        style: { backgroundColor: "#00d" }
+    },
+    {
+        id: "n102",
+        type: "note-img",
+        info: {
+            url: "https://cdn.webshopapp.com/shops/77844/files/349917232/image.jpg",
+            title: "Bobi and Me",
+            txt: "My image text BLah my image text BLah my image text BLah my image text BLah my image text BLah my image text BLah my image text BLah "
         },
         style: { backgroundColor: "#00d" }
     },

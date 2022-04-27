@@ -22,7 +22,7 @@ export class NoteApp extends React.Component {
         
         const { notes } = this.state
         if (!notes) return <React.Fragment></React.Fragment>
-        return <section className="note-index flex-col align-center">
+        return <section className="note-app flex-col align-center">
             <NoteAddInput />
             <NoteList notes={notes} />
         </section>

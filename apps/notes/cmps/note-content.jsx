@@ -1,20 +1,45 @@
 export function NoteContent({ note }) {
+  return (
+    <div className="note-content">
+      <DynamicCmp note={note} />
+    </div>
+  )
+}
 
-    if (note.type === 'note-txt') {
-        return <p>Text note Contento</p>
-    } else if (note.type === 'note-img') {
-        return <p>Note Contento</p>
-    } else if (note.type === 'note-video') {
-        return <p>Note Contento</p>
-    } else {
-        return <ul className="todo-content">
-            {note.info.todos.map(todo => {
-                return <li key={todo.todoId}>{todo.txt}</li>
+const DynamicCmp = (note) => {
+  const { type, info } = note.note
+
+  switch (type) {
+    case "note-txt":
+      return (
+        <div className="txt-content">
+          <h2>{info.title}</h2>
+          {info.txt}
+        </div>
+      )
+
+    case "note-img":
+      return (
+        <div className="img-content">
+          <img src={info.url} alt="Note image" />
+          <h2>{info.title}</h2>
+          <p>{info.txt}</p>
+        </div>
+      )
+
+    case "note-video":
+      return <p>Video note Contento</p>
+      
+    case "note-todos":
+      return (
+        <React.Fragment>
+          <h2>{info.title}</h2>
+          <ul className="todo-content">
+            {info.todos.map((todo) => {
+              return <li key={todo.todoId}>{todo.txt}</li>
             })}
-            {/* {console.log(note.info.todos.map(todo => {
-                return `<li>${todo.txt}</li>`
-            }).join("")
-            )} */}
-        </ul>
-    }
+          </ul>
+        </React.Fragment>
+      )
+  }
 }
