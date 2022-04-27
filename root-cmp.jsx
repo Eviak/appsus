@@ -1,7 +1,7 @@
 import { Home } from './pages/home.jsx'
 import { About } from './pages/about.jsx'
 import { AppHeader } from './cmps/app-header.jsx'
-import { NoteIndex } from './apps/notes/pages/note-index.jsx'
+import { NoteApp } from './apps/notes/pages/note-app.jsx'
 
 
 const Router = ReactRouterDOM.HashRouter
@@ -12,7 +12,7 @@ export function App() {
         <AppHeader />
         <section className="app">
             <Switch>
-                <Route path="/notes" component={NoteIndex} />
+                <Route path="/notes" component={NoteApp} />
                 <Route path="/about" component={About} />
                 <Route path="/" component={Home} />
             </Switch>
