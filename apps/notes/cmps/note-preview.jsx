@@ -1,5 +1,3 @@
-import { NoteContent } from "./note-content.jsx"
-
 export function NotePreview({ note }) {
   const NOTE_TYPES = ["note-txt", "note-img", "note-video", "note-todos"]
 

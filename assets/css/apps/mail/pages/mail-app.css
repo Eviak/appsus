@@ -1,0 +1,19 @@
+
+
+.mail-app{
+    background-color: #ffff;
+    width: 100vw;
+    font-family: roboto;
+}
+
+.interface{
+    width: 10%;
+}
+
+.interface button{
+    margin-bottom: 20px;
+}
+
+.main-mail{
+    width:90%;
+}

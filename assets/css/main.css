@@ -32,3 +32,13 @@
 @import './apps/notes/cmps/note-list.css';
 @import './apps/notes/cmps/note-add-input.css';
 @import './apps/notes/cmps/note-content.css';
+
+
+
+
+/* Mail App */
+
+@import './apps/mail/cmps/mail-preview.css';
+
+
+@import './apps/mail/pages/mail-app.css';

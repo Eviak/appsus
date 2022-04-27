@@ -17,3 +17,13 @@
     font-family: lato-x-bold;
     src: url('../../fonts/Lato-Black.ttf');
 }
+
+@font-face {
+    font-family: roboto;
+    src: url('../../fonts/Roboto/Roboto-Regular.ttf');
+}
+
+@font-face {
+    font-family: roboto-bold;
+    src: url('../../fonts/Roboto/Roboto-Bold.ttf')
+}

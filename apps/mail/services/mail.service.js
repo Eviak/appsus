@@ -15,7 +15,8 @@ const loggedInUser = {
 }
 
 function query(){
-    return Promise.resolve(gMail)
+    let mails = gMail
+    return Promise.resolve(mails)
 }
 
 
@@ -27,7 +28,8 @@ function _createMails() {
             body: 'This is the first email sent, what an achivement!',
             isRead: false,
             sentAt: 1645114035,
-            to: 'puki@lala.com'
+            to: 'puki@lala.com',
+            fullName: 'Muki Lala'
         },
 
         {
@@ -36,7 +38,8 @@ function _createMails() {
             body: 'Yup still works, what an achivement!',
             isRead: false,
             sentAt: 1645121884,
-            to: 'puki@lala.com'
+            to: 'puki@lala.com',
+            fullName: 'Muki Lala'
         },
 
         {
@@ -45,7 +48,8 @@ function _createMails() {
             body: 'Stop sending me emails!',
             isRead: false,
             sentAt: 1645122078,
-            to: 'muki@lala.com'
+            to: 'muki@lala.com',
+            fullName: 'Puki Lala'
         },
     ]
 }
