@@ -1,0 +1,15 @@
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: lightcyan;
+}
+
+.app-header nav>*:not(:last-child) {
+    margin-inline-end: 10px;
+}
+
+.active {
+    color: red;
+}
