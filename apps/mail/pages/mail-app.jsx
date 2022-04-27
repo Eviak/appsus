@@ -17,6 +17,10 @@ export class MailApp extends React.Component{
     render() {
         const {mails} = this.state
         return <section className="mail-app">
+            <section className="interface">
+            <button>Compose</button>
+            <MailFolderList />
+            </section>
             <MailList mails={mails}/>
         </section>
     }

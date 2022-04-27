@@ -1,3 +1,4 @@
+import { MailPreview } from "./mail-preview.jsx"
 
 export function MailList(props){
     const {mails} = props
