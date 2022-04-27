@@ -1,5 +1,7 @@
+const { Link } = ReactRouterDOM 
+
 export function Home() {
   return <section className="home">
-      Home 
+       <Link to="/notes">Notes</Link>
       </section>
 }
