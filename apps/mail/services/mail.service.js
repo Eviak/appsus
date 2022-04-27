@@ -15,7 +15,8 @@ const loggedInUser = {
 }
 
 function query(){
-    return Promise.resolve(gMail)
+    let mails = gMail
+    return Promise.resolve(mails)
 }
 
 
