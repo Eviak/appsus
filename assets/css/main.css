@@ -14,3 +14,12 @@
 /* Cmps */
 
 @import './cmps/app-header.css';
+
+
+
+
+/* Notes App  */
+
+@import './apps/notes/cmps/note-preview.css';
+@import './apps/notes/cmps/note-list.css';
+@import './apps/notes/cmps/note-add-input.css';

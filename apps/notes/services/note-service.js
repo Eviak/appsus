@@ -2,18 +2,23 @@ export const noteService = {
     query,
 }
 
+const NOTE_TYPES = ['note-txt', 'note-img', 'note-video', 'note-todos']
+
 const gNotes = [{
         id: "n101",
         type: "note-txt",
         isPinned: true,
-        nfo: { txt: "Fullstack Me Baby!" }
+        info: { 
+            txt: "Fullstack Me Baby!",
+            title: "Fullstack text note",
+        }
     },
     {
         id: "n102",
         type: "note-img",
         info: {
             url: "http://some-img/me",
-            title: "Bobi and Me"
+            title: "Bobi and Me",
         },
         style: { backgroundColor: "#00d" }
     },
@@ -21,13 +26,16 @@ const gNotes = [{
         id: "n103",
         type: "note-todos",
         info: {
+            title: "Todos:",
             label: "Get my stuff together",
             todos: [{
                 txt: "Driving liscence",
-                doneAt: null
+                doneAt: null,
+                todoId: 1,
             }, {
                 txt: "Coding power",
-                doneAt: 187111111
+                doneAt: 187111111,
+                todoId: 2,
             }]
         }
     }
@@ -35,6 +43,5 @@ const gNotes = [{
 
 function query() {
     let notes = gNotes
-    // console.log(notes);
     return Promise.resolve(notes)
 }

@@ -1,6 +1,18 @@
-export function NotePreview() {
-    return <div className="note">
-        <h2>Note Header</h2>
-        <p>Note content</p>
-    </div>
+import { NoteContent } from "./note-content.jsx"
+
+
+export function NotePreview({ note }) {
+
+    const NOTE_TYPES = ['note-txt', 'note-img', 'note-video', 'note-todos']
+
+
+    return NOTE_TYPES.map(noteType => {
+        if (noteType === note.type) {
+        return <div key={note.id} className={`note-preview ${noteType}`}>
+        <h2>{note.info.title}</h2>
+        <NoteContent note={note} />
+      </div>
+        }
+    })
+
 }
