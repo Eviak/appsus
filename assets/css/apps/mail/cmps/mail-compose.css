@@ -24,7 +24,12 @@
     padding: 8px 0;
 }
 
+.compose-main input:active{
+    outline: none;
+}
+
 .compose-main textarea{
     height: 493px;
     border:none;
+    resize: none;
 }

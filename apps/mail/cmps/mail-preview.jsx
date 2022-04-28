@@ -1,8 +1,8 @@
 
 export function MailPreview(props){
-    const {mail} = props
+    const {mail,onMailClicked} = props
     const isRead = mail.isRead && 'read' || ''
-    return <section className={`mail-preview flex ${isRead}`} onClick={() => props.onMailClicked(mail.id)}>
+    return <section className={`mail-preview flex ${isRead}`} onClick={() => onMailClicked(mail.id)}>
         <h3 className="sender-name">{mail.fullName}</h3>
         <div className="subj-body flex">
         <h3 className="subject">{mail.subject}</h3>

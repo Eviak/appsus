@@ -7,7 +7,8 @@ export class MailApp extends React.Component {
 
     state = {
         mails: [],
-        criteria: {}
+        criteria: {},
+        compose: false
     }
 
     componentDidMount() {
@@ -26,6 +27,15 @@ export class MailApp extends React.Component {
         this.loadMails()
     }
 
+    onSendMail = (sendParams) => {
+        mailService.sendMail(sendParams)
+        this.loadMails()
+    }
+
+    toggleCompose = (compose) => {
+        this.setState({compose})
+    }
+
     get statusToFilter() {
         const {mails} = this.state
         const urlSrcPrm = new URLSearchParams(this.props.location.search)
@@ -37,15 +47,15 @@ export class MailApp extends React.Component {
     }
 
     render() {
-        const { mails } = this.state
+        const { mails, compose } = this.state
         return <section className="mail-app flex">
             <section className="interface">
-                <button>Compose</button>
+                <button onClick = {() => this.toggleCompose(true)}>Compose</button>
                 <MailFolderList />
             </section>
             <section className="main-mail">
                 <MailList mails={this.statusToFilter} onMailClicked={this.onMailClicked} />
-                <MailCompose />
+                {compose && <MailCompose onSendMail={this.onSendMail} toggleCompose={this.toggleCompose} />}
             </section>
         </section>
     }
