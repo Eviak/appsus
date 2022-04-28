@@ -14,3 +14,29 @@
     font-weight: 100;
     font-family: roboto-bold;
 }
+
+.mail-preview .sender-name{
+    min-width: 300px;
+}
+
+.mail-preview .subj-body{
+    align-items: center;
+    width: 1324px;
+}
+
+.mail-preview .body{
+    height: 20px;
+}
+
+.mail-preview .date{
+    min-width:140px;
+    justify-content: flex-end;
+}
+
+.read{
+    background-color: var(--read-bg);
+}
+
+.read >*{
+    font-family: roboto;
+}
