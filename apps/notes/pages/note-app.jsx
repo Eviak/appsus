@@ -63,12 +63,16 @@ export class NoteApp extends React.Component {
 
         if (!notes) return <React.Fragment></React.Fragment>
         return <section className="note-app flex-col align-center">
-            <NoteAddInput  onNoteAdd={onNoteAdd} handleChange={handleChange} />
+            <NoteAddInput  
+            onNoteAdd={onNoteAdd} 
+            handleChange={handleChange} />
+
             <NoteList 
             notes={notes}
             onNoteDelete={onNoteDelete} 
             onColorChange={onColorChange}
             showHideModal={showHideModal} />
+            
             <NoteEditModal 
             loadNotes={loadNotes} 
             isShown={isNoteModalShown}

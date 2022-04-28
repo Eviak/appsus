@@ -59,7 +59,7 @@ const DynamicCmp = ({prms}) => {
       )
 
     case "note-video":
-      return <React.Fragment>Video note Contento</React.Fragment>
+      return <React.Fragment>Video note Content</React.Fragment>
 
     case "note-todos":
       return (
