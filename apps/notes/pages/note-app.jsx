@@ -10,6 +10,7 @@ export class NoteApp extends React.Component {
         newNote: {
             title: '',
             txt: '',
+            txtColor: '#00c0ff',
         },
    }
 
@@ -22,9 +23,25 @@ export class NoteApp extends React.Component {
             .then(notes => this.setState({ notes }))
     }
 
-    onAdd = (ev) => {
+    onNoteAdd = (ev) => {
         ev.preventDefault()
         noteService.addNewNote(this.state.newNote)
+        this.loadNotes()
+    }
+    
+    onNoteDelete = (noteId) => {
+        noteService.removeNote(noteId)
+        this.loadNotes()
+
+    }
+    
+    onEditText = (noteId) => {
+        console.log(noteId);
+    }
+
+    onColorChange = (noteId, newColor) => {
+        const noteIdx = noteService.getNoteIdx(noteId)
+        noteService.setNewColor(noteIdx, newColor)
         this.loadNotes()
     }
 
@@ -36,14 +53,18 @@ export class NoteApp extends React.Component {
 
 
    render() {
-       const { handleChange, onAdd} = this
+       const { handleChange, onNoteAdd, onNoteDelete, onEditText, onColorChange} = this
        const { notes } = this.state
        if (!notes) return <div>loading...</div>
 
         if (!notes) return <React.Fragment></React.Fragment>
         return <section className="note-app flex-col align-center">
-            <NoteAddInput  onAdd={onAdd} handleChange={handleChange} />
-            <NoteList notes={notes} />
+            <NoteAddInput  onNoteAdd={onNoteAdd} handleChange={handleChange} />
+            <NoteList 
+            notes={notes}
+            onNoteDelete={onNoteDelete} 
+            onEditText={onEditText}
+            onColorChange={onColorChange} />
             <NoteModal notes={notes} />
         </section>
    }

@@ -6,9 +6,9 @@ export class NoteAddInput extends React.Component{
 
 
     render() {
-        const { onAdd, handleChange } = this.props
+        const { onNoteAdd, handleChange } = this.props
         return <section className="note-add-input flex align-center" style={{height: '45px'}}>
-        <form onSubmit={onAdd}>
+        <form onSubmit={onNoteAdd}>
         <input type="text" placeholder="title" name="title" onChange={handleChange} />
         <textarea placeholder="What's on your mind?" name="txt" onChange={handleChange} style={{lineHeight: '1.3333em'}} />
         <img src="apps/notes/img/icons/image.png" alt="" />

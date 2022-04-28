@@ -5,6 +5,9 @@ import { utilService } from "../../../services/util.service.js";
 export const noteService = {
     query,
     addNewNote,
+    removeNote,
+    getNoteIdx,
+    setNewColor
 }
 
 const KEY = 'notesDB'
@@ -164,7 +167,6 @@ const gNotes = [{
 
 function query() {
     let notes = _loadFromStorage()
-    console.log(notes);
     if (!notes) {
         notes = gNotes
         _saveToStorage(notes)
@@ -180,13 +182,45 @@ function addNewNote(newNote) {
     return Promise.resolve()
 }
 
-function _createNote({title, txt}) {
+function removeNote(noteId) {
+    let notes = _loadFromStorage()
+    notes = notes.filter(note => note.id !== noteId)
+    _saveToStorage(notes)
+    return Promise.resolve()
+}
+
+function getNoteIdx(noteId) {
+    const notes = _loadFromStorage()
+    return notes.findIndex(note => note.id === noteId)
+}
+
+function setNewColor(noteIdx, newColor) {
+    let notes = _loadFromStorage()
+    notes[noteIdx].info.txtColor = newColor
+    _saveToStorage(notes)
+    return Promise.resolve()  
+}
+
+function _createNote({ title, txt, txtColor = 'red' }) {
     const id = utilService.makeId()
     return {
-        id: 'n'+id,
+        id: 'n' + id,
         type: 'note-txt',
-        info: {title, txt},
+        info: { title, txt, txtColor },
     }
+}
+
+function _createRndTextNote() {
+    const title = utilService.makeId()
+    const txt = utilService.makeId()
+    const note = {
+        title,
+        txt,
+        txtColor: 'blue'
+    }
+
+    console.log(note);
+    addNewNote(note)
 }
 
 function _saveToStorage(notes) {
