@@ -10,8 +10,7 @@ export class NotePreview extends React.Component {
   toNoteEdit = (noteId) => {
     const noteIdx = noteService.getNoteIdx(noteId)
     const editedNote = this.props.notes[noteIdx]
-    // console.log(this.props.notes[noteIdx]);
-    this.props.toggleNoteModalShown(true)
+    this.props.showHideModal(true)
     eventBusService.emit('open-note-modal', {editedNote})
     
   }

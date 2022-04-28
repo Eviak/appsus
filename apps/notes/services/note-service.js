@@ -202,10 +202,12 @@ function setNewColor(noteIdx, newColor) {
     return Promise.resolve()  
 }
 
-function editNoteById(noteId, txt) {
+function editNoteById(noteId, note) {
     let notes = _loadFromStorage()
     const noteIdx = getNoteIdx(noteId)
-    notes[noteIdx].info.txt = txt
+    notes.splice(noteIdx, 1, note)
+    _saveToStorage(notes)
+    return Promise.resolve()
 }
 
 function _createNote({ title, txt, txtColor = 'red' }) {

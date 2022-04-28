@@ -10,32 +10,37 @@ export class NoteEditModal extends React.Component {
     clearModalBus()
   }
 
-  onNoteEditSave = (ev) => {
-    ev.preventDefault()
-    // const txt = newNote
-    const noteId = this.state.note.editedNote.id
-    // noteService.editNoteById(noteId, txt)
+  loadModal = () => {
+    this.setState({ note: this.state.note })
   }
 
-  onTxtInput = ({ target }) => {
-    console.log(target.value)
-    // this.setState({...note, id: 'np7DaLZ'})
-    this.state = {
-      someProperty: {
-         someOtherProperty: {
-             anotherProperty: {
-                flag: true
-             }
-         }
-      }
-   }
-    var x = this.state.note
-    console.log(x);
+  onNoteEditSave = (ev) => {
+    ev.preventDefault()
+    const editedNote = this.state.note
+    const noteId = this.state.note.id
+    noteService
+      .editNoteById(noteId, editedNote)
+      .then(() => this.props.loadNotes())
+  }
 
+  onChange = ({ target }) => {
+    const value = target.value
+    const field = target.name
+
+    this.setState((prevState) => ({
+      ...prevState,
+      note: {
+        ...prevState.note,
+        info: {
+          ...prevState.note.info,
+          [field]: value,
+        },
+      },
+    }))
   }
 
   render() {
-    const { isShown } = this.props
+    const { isShown, showHideModal } = this.props
 
     if (!isShown) return <React.Fragment></React.Fragment>
 
@@ -51,14 +56,20 @@ export class NoteEditModal extends React.Component {
       case "note-txt":
         return (
           <form onSubmit={this.onNoteEditSave} className="note-edit-modal">
-            <h2>{note.info.title}</h2>
             <textarea
-              onChange={(ev) => this.onTxtInput(ev)}
-              value={note.info.txt}
-              cols="30"
-              rows="10"
+              value={note.info.title}
+              name="title"
+              onChange={(ev) => this.onChange(ev)}
             ></textarea>
-            <button>Save</button>
+            <textarea
+              value={note.info.txt}
+              name="txt"
+              onChange={(ev) => this.onChange(ev)}
+            ></textarea>
+            <button type="submit">Save</button>
+            <button type="button" onClick={() => showHideModal(false)}>
+              Exit modal
+            </button>
           </form>
         )
     }

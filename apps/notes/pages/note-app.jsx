@@ -49,14 +49,14 @@ export class NoteApp extends React.Component {
         this.setState((prevState) => ({ newNote: { ...prevState.newNote, [field]: value } }))
     }
 
-    toggleNoteModalShown = (isShown) => {
+    showHideModal = (isShown) => {
         this.setState({isNoteModalShown: isShown})
         this.loadNotes()
     }
 
 
    render() {
-       const { handleChange, onNoteAdd, onNoteDelete, onColorChange, toggleNoteModalShown} = this
+       const { handleChange, onNoteAdd, onNoteDelete, onColorChange, showHideModal: showHideModal, loadNotes} = this
        const { notes,isNoteModalShown } = this.state
 
        if (!notes) return <div>loading...</div>
@@ -68,8 +68,11 @@ export class NoteApp extends React.Component {
             notes={notes}
             onNoteDelete={onNoteDelete} 
             onColorChange={onColorChange}
-            toggleNoteModalShown={toggleNoteModalShown} />
-            <NoteEditModal isShown={isNoteModalShown} />
+            showHideModal={showHideModal} />
+            <NoteEditModal 
+            loadNotes={loadNotes} 
+            isShown={isNoteModalShown}
+            showHideModal={showHideModal} />
         </section>
    }
 }
