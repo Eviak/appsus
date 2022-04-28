@@ -1,7 +1,7 @@
 
 import { NoteAddInput } from "../cmps/note-add-input.jsx"
 import { NoteList } from "../cmps/note-list.jsx"
-import { NoteModal } from "../cmps/note-modal.jsx"
+import { NoteEditModal } from "../cmps/note-edit-modal.jsx"
 import { noteService } from "../services/note-service.js"
 
 export class NoteApp extends React.Component {
@@ -12,6 +12,8 @@ export class NoteApp extends React.Component {
             txt: '',
             txtColor: '#00c0ff',
         },
+        editedNote: null,
+        isNoteModalShown: false,
    }
 
    componentDidMount() { 
@@ -34,10 +36,6 @@ export class NoteApp extends React.Component {
         this.loadNotes()
 
     }
-    
-    onEditText = (noteId) => {
-        console.log(noteId);
-    }
 
     onColorChange = (noteId, newColor) => {
         const noteIdx = noteService.getNoteIdx(noteId)
@@ -51,10 +49,16 @@ export class NoteApp extends React.Component {
         this.setState((prevState) => ({ newNote: { ...prevState.newNote, [field]: value } }))
     }
 
+    toggleNoteModalShown = (isShown) => {
+        this.setState({isNoteModalShown: isShown})
+        this.loadNotes()
+    }
+
 
    render() {
-       const { handleChange, onNoteAdd, onNoteDelete, onEditText, onColorChange} = this
-       const { notes } = this.state
+       const { handleChange, onNoteAdd, onNoteDelete, onColorChange, toggleNoteModalShown} = this
+       const { notes,isNoteModalShown } = this.state
+
        if (!notes) return <div>loading...</div>
 
         if (!notes) return <React.Fragment></React.Fragment>
@@ -63,9 +67,9 @@ export class NoteApp extends React.Component {
             <NoteList 
             notes={notes}
             onNoteDelete={onNoteDelete} 
-            onEditText={onEditText}
-            onColorChange={onColorChange} />
-            <NoteModal notes={notes} />
+            onColorChange={onColorChange}
+            toggleNoteModalShown={toggleNoteModalShown} />
+            <NoteEditModal isShown={isNoteModalShown} />
         </section>
    }
 }

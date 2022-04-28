@@ -7,7 +7,8 @@ export const noteService = {
     addNewNote,
     removeNote,
     getNoteIdx,
-    setNewColor
+    setNewColor,
+    editNoteById,
 }
 
 const KEY = 'notesDB'
@@ -199,6 +200,12 @@ function setNewColor(noteIdx, newColor) {
     notes[noteIdx].info.txtColor = newColor
     _saveToStorage(notes)
     return Promise.resolve()  
+}
+
+function editNoteById(noteId, txt) {
+    let notes = _loadFromStorage()
+    const noteIdx = getNoteIdx(noteId)
+    notes[noteIdx].info.txt = txt
 }
 
 function _createNote({ title, txt, txtColor = 'red' }) {
