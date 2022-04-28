@@ -1,0 +1,6 @@
+.note-edit-modal {
+    position: fixed;
+    background-color: lightpink;
+    width: 200px;
+    height: 200px;
+}
