@@ -4,7 +4,6 @@ import { noteService } from "../services/note-service.js"
 export class NoteEditModal extends React.Component {
   state = {
     note: null,
-    newNote: null,
   }
 
   componentWillUnmount() {
@@ -19,31 +18,49 @@ export class NoteEditModal extends React.Component {
   }
 
   onTxtInput = ({ target }) => {
-    console.log(target);
-    this.setState({newNote: {txt: target.value}})
-    console.log(this.state.newNote);
+    console.log(target.value)
+    // this.setState({...note, id: 'np7DaLZ'})
+    this.state = {
+      someProperty: {
+         someOtherProperty: {
+             anotherProperty: {
+                flag: true
+             }
+         }
+      }
+   }
+    var x = this.state.note
+    console.log(x);
+
   }
-  
+
   render() {
     const { isShown } = this.props
-    
-    if (!isShown) return <React.Fragment></React.Fragment>
-    
-    const clearModalBus = eventBusService.on("open-note-modal", (note) => {
-      this.setState({ note })
-    })
-    
-    if (!this.state.note) return <h1>LOADING..</h1>
-    
-    const { editedNote } = this.state.note
 
-    switch (editedNote.type) {
+    if (!isShown) return <React.Fragment></React.Fragment>
+
+    const clearModalBus = eventBusService.on("open-note-modal", (note) => {
+      this.setState({ note: note.editedNote })
+    })
+
+    if (!this.state.note) return <h1>LOADING..</h1>
+
+    const { note } = this.state
+
+    switch (note.type) {
       case "note-txt":
-        return <form onSubmit={this.onNoteEditSave} className="note-edit-modal">
-          <h2>{editedNote.info.title}</h2>
-          <textarea onInput={(ev) => this.onTxtInput(ev)} value={editedNote.info.txt} id="" cols="30" rows="10"></textarea>
-          <button>Save</button>
+        return (
+          <form onSubmit={this.onNoteEditSave} className="note-edit-modal">
+            <h2>{note.info.title}</h2>
+            <textarea
+              onChange={(ev) => this.onTxtInput(ev)}
+              value={note.info.txt}
+              cols="30"
+              rows="10"
+            ></textarea>
+            <button>Save</button>
           </form>
+        )
     }
   }
 }
