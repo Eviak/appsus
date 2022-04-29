@@ -26,6 +26,7 @@
 
 .mail-preview .body{
     height: 15px;
+    overflow: hidden;
 }
 
 .mail-preview .date{

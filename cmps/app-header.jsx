@@ -1,8 +1,11 @@
-const { NavLink, withRouter } = ReactRouterDOM
-export function AppHeader(props) {
+import { MailFilter } from "../apps/mail/cmps/mail-filter.jsx"
 
+const { NavLink, withRouter } = ReactRouterDOM
+function _AppHeader(props) {
     return <header className="app-header">
         <h3>Header</h3>
+
+        {props.location.pathname.includes('/mail') && <MailFilter />}
 
         <nav>
             <NavLink to="/" exact>Home</NavLink>
@@ -10,3 +13,5 @@ export function AppHeader(props) {
         </nav>
     </header>
 }
+
+export const AppHeader = withRouter(_AppHeader)

@@ -1,7 +1,7 @@
 import { storageService } from "../../../services/storage.service.js";
 import { utilService } from "../../../services/util.service.js";
 
-export const gmailService = {
+export const mailService = {
     query,
     setOnRead,
     sendMail,
@@ -16,8 +16,18 @@ const loggedInUser = {
     fullName: 'Puki Lala'
 }
 
-function query() {
+function query(criteria) {
     let mails = gMail
+    console.log(criteria)
+    if (criteria){
+        console.log('I am in the filter')
+        mails = mails.filter(mail => {
+            return mail.subject.toLowerCase().includes(criteria.toLowerCase()) ||
+            mail.body.toLowerCase().includes(criteria.toLowerCase()) ||
+            mail.to.toLowerCase().includes(criteria.toLowerCase()) ||
+            mail.fullName.toLowerCase().includes(criteria.toLowerCase())
+        })
+    }
     return Promise.resolve(mails)
 }
 
@@ -28,11 +38,9 @@ function setOnRead(id) {
 }
 
 function sendMail(sendParams) {
-    const mails = [...gMail.reverse()]
     const mail = _createMail(sendParams)
-    mails.push(mail)
-    storageService.saveToStorage(MAIL_KEY, [...mails.reverse()])
-
+    gMail.unshift(mail)
+    storageService.saveToStorage(MAIL_KEY,gMail)
 }
 
 
