@@ -1,82 +1,70 @@
-
 import { NoteAddInput } from "../cmps/note-add-input.jsx"
 import { NoteList } from "../cmps/note-list.jsx"
 import { NoteEditModal } from "../cmps/note-edit-modal.jsx"
 import { noteService } from "../services/note-service.js"
 
 export class NoteApp extends React.Component {
-   state = {
-        notes: [],
-        newNote: {
-            title: '',
-            txt: '',
-            txtColor: '#00c0ff',
-        },
-        editedNote: null,
-        isNoteModalShown: false,
-   }
+  state = {
+    notes: [],
+    editedNote: null,
+    isNoteModalShown: false,
+  }
 
-   componentDidMount() { 
-       this.loadNotes()
-    }
+  componentDidMount() {
+    this.loadNotes()
+  }
 
-    loadNotes = () => {
-        noteService.query()
-            .then(notes => this.setState({ notes }))
-    }
+  loadNotes = () => {
+    noteService.query()
+        .then((notes) => this.setState({ notes }))
+  }
 
-    onNoteAdd = (ev) => {
-        ev.preventDefault()
-        noteService.addNewNote(this.state.newNote)
-        this.loadNotes()
-    }
-    
-    onNoteDelete = (noteId) => {
-        noteService.removeNote(noteId)
-        this.loadNotes()
+  onNoteDelete = (noteId) => {
+    noteService.removeNote(noteId)
+    this.loadNotes()
+  }
 
-    }
+  onColorChange = (noteId, newColor) => {
+    const noteIdx = noteService.getNoteIdx(noteId)
+    noteService.setNewColor(noteIdx, newColor)
+    this.loadNotes()
+  }
 
-    onColorChange = (noteId, newColor) => {
-        const noteIdx = noteService.getNoteIdx(noteId)
-        noteService.setNewColor(noteIdx, newColor)
-        this.loadNotes()
-    }
+  showHideModal = (isShown) => {
+    this.setState({ isNoteModalShown: isShown })
+    this.loadNotes()
+  }
 
-    handleChange = ({ target }) => {
-        const value = target.value
-        const field = target.name
-        this.setState((prevState) => ({ newNote: { ...prevState.newNote, [field]: value } }))
-    }
+  render() {
+    const {
+      onNoteDelete,
+      onColorChange,
+      showHideModal,
+      loadNotes,
+    } = this
+    const { notes, isNoteModalShown } = this.state
 
-    showHideModal = (isShown) => {
-        this.setState({isNoteModalShown: isShown})
-        this.loadNotes()
-    }
+    if (!notes) return <div>loading...</div>
 
+    if (!notes) return <React.Fragment></React.Fragment>
+    return (
+      <section className="note-app flex-col align-center">
+        <NoteAddInput  
+        loadNotes={loadNotes} />
 
-   render() {
-       const { handleChange, onNoteAdd, onNoteDelete, onColorChange, showHideModal: showHideModal, loadNotes} = this
-       const { notes,isNoteModalShown } = this.state
+        <NoteList
+          notes={notes}
+          onNoteDelete={onNoteDelete}
+          onColorChange={onColorChange}
+          showHideModal={showHideModal}
+        />
 
-       if (!notes) return <div>loading...</div>
-
-        if (!notes) return <React.Fragment></React.Fragment>
-        return <section className="note-app flex-col align-center">
-            <NoteAddInput  
-            onNoteAdd={onNoteAdd} 
-            handleChange={handleChange} />
-
-            <NoteList 
-            notes={notes}
-            onNoteDelete={onNoteDelete} 
-            onColorChange={onColorChange}
-            showHideModal={showHideModal} />
-            
-            <NoteEditModal 
-            loadNotes={loadNotes} 
-            isShown={isNoteModalShown}
-            showHideModal={showHideModal} />
-        </section>
-   }
+        <NoteEditModal
+          loadNotes={loadNotes}
+          isShown={isNoteModalShown}
+          showHideModal={showHideModal}
+        />
+      </section>
+    )
+  }
 }

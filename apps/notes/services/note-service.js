@@ -210,12 +210,13 @@ function editNoteById(noteId, note) {
     return Promise.resolve()
 }
 
-function _createNote({ title, txt, txtColor = 'red' }) {
+function _createNote({ type, title, txt, txtColor = 'red', url, bgClr, isPinned=false, doneAt }) {
     const id = utilService.makeId()
     return {
         id: 'n' + id,
-        type: 'note-txt',
-        info: { title, txt, txtColor },
+        isPinned,
+        type,
+        info: { title, txt, txtColor, url, bgClr, doneAt },
     }
 }
 
