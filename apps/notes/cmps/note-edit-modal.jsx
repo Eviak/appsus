@@ -10,7 +10,6 @@ export class NoteEditModal extends React.Component {
   componentDidMount() {}
 
   componentWillUnmount() {
-    clearModalBus()
   }
 
   onNoteEditSave = (ev) => {

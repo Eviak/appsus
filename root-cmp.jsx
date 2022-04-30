@@ -3,7 +3,7 @@ import { About } from './pages/about.jsx'
 import { AppHeader } from './cmps/app-header.jsx'
 import { NoteApp } from './apps/notes/pages/note-app.jsx'
 import { MailApp } from './apps/mail/pages/mail-app.jsx'
-import { MailDetail } from './apps/mail/pages/mail-detail.jsx'
+import { Footer } from './cmps/footer.jsx'
 
 const Router = ReactRouterDOM.HashRouter
 const { Route, Switch } = ReactRouterDOM
@@ -19,5 +19,6 @@ export function App() {
                 <Route path="/" component={Home} />
             </Switch>
         </section>
+        <Footer />
     </Router>
 }
