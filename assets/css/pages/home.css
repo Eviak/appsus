@@ -1,21 +1,33 @@
+.home {
+    height: 800px;
+    justify-content: center;
+    background-color: rgb(250, 254, 255);
+}
+
 .home a:first-of-type {
     border-radius: 6px;
     border: 1px solid rgb(201, 201, 201);
-    padding: 5px;
-    background-color: rgb(0, 238, 255);
+    padding: 30px;
+    background-color: rgb(129, 234, 248);
     box-shadow: -1px 1px 3px 1px #b3b3b3;
+    margin-inline-end: 40px;
+}
+
+.home .to-apps-btns {
+    transform: translateY(220px);
 }
 
 .home a {
     border-radius: 6px;
     border: 1px solid rgb(201, 201, 201);
-    padding: 5px;
-    background-color: rgb(42, 172, 92);
+    padding: 30px;
+    background-color: rgb(255, 187, 132);
     box-shadow: -1px 1px 3px 1px #b3b3b3;
 }
 
 .home > img:first-child {
-    /* width: 100px; */
+    width: 1066px;
+    height: 800px;
     position: absolute;
-    z-index: -5;
+    z-index: 0;
 }
