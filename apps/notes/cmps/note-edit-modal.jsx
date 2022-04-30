@@ -4,14 +4,15 @@ import { noteService } from "../services/note-service.js"
 export class NoteEditModal extends React.Component {
   state = {
     note: null,
+    render: 0,
   }
+
+  componentDidMount() { 
+
+   }
 
   componentWillUnmount() {
     clearModalBus()
-  }
-
-  loadModal = () => {
-    this.setState({ note: this.state.note })
   }
 
   onNoteEditSave = (ev) => {
@@ -23,9 +24,18 @@ export class NoteEditModal extends React.Component {
       .then(() => this.props.loadNotes())
   }
 
-  onChange = ({ target }) => {
-    const value = target.value
+  onChange = ({ target }, todoId) => {
+    let value = target.value
     const field = target.name
+
+    if (field === "todos") {
+      const todoIdx = this.state.note.info.todos.findIndex(
+        (todo) => todo.todoId === todoId
+      )
+      const todosCopy = this.state.note.info.todos
+      todosCopy[todoIdx].txt = value
+      value = todosCopy
+    }
 
     this.setState((prevState) => ({
       ...prevState,
@@ -41,6 +51,8 @@ export class NoteEditModal extends React.Component {
 
   render() {
     const { isShown, showHideModal } = this.props
+    const { onChange } = this
+    const { note } = this.state
 
     if (!isShown) return <React.Fragment></React.Fragment>
 
@@ -50,22 +62,124 @@ export class NoteEditModal extends React.Component {
 
     if (!this.state.note) return <h1>LOADING..</h1>
 
-    const { note } = this.state
+    const modalStyle = {
+      color: note.info.txtColor,
+      backgroundColor: note.info.bgClr,
+    }
 
     switch (note.type) {
       case "note-txt":
         return (
           <form onSubmit={this.onNoteEditSave} className="note-edit-modal">
             <textarea
+              style={modalStyle}
               value={note.info.title}
               name="title"
-              onChange={(ev) => this.onChange(ev)}
+              onChange={(ev) => onChange(ev)}
             ></textarea>
             <textarea
+              style={modalStyle}
               value={note.info.txt}
               name="txt"
-              onChange={(ev) => this.onChange(ev)}
+              onChange={(ev) => onChange(ev)}
             ></textarea>
+            <h4>Text color:</h4>
+            <input name="txtColor" type="color" onChange={onChange} />
+            <h4>Background color:</h4>
+            <input name="bgClr" type="color" onChange={onChange} />
+            <button type="submit">Save</button>
+            <button type="button" onClick={() => showHideModal(false)}>
+              Exit modal
+            </button>
+          </form>
+        )
+
+      case "note-img":
+        return (
+          <form onSubmit={this.onNoteEditSave} className="note-edit-modal">
+            <img src={note.info.url} alt="Note image" />
+            <textarea
+              style={modalStyle}
+              value={note.info.title}
+              name="title"
+              onChange={(ev) => onChange(ev)}
+            ></textarea>
+            <textarea
+              style={modalStyle}
+              value={note.info.txt}
+              name="txt"
+              onChange={(ev) => onChange(ev)}
+            ></textarea>
+            <h3>Title and text color:</h3>
+            <h4>Text color:</h4>
+            <input name="txtColor" type="color" onChange={onChange} />
+            <h4>Background color:</h4>
+            <input name="bgClr" type="color" onChange={onChange} />
+            <button type="submit">Save</button>
+            <button type="button" onClick={() => showHideModal(false)}>
+              Exit modal
+            </button>
+          </form>
+        )
+
+      case "note-vid":
+        return (
+          <form onSubmit={this.onNoteEditSave} className="note-edit-modal">
+            <h3>Title:</h3>
+            <textarea
+              style={modalStyle}
+              value={note.info.title}
+              name="title"
+              onChange={(ev) => onChange(ev)}
+            ></textarea>
+            <h3>Url:</h3>
+            <textarea
+              value={note.info.url}
+              name="url"
+              onChange={(ev) => onChange(ev)}
+            ></textarea>
+            <iframe
+              width="240"
+              height="180"
+              src={`https://www.youtube.com/embed/${note.info.ytVidId}`}
+            ></iframe>
+            <h4>Text color:</h4>
+            <input name="txtColor" type="color" onChange={onChange} />
+            <h4>Background color:</h4>
+            <input name="bgClr" type="color" onChange={onChange} />
+            <button type="submit">Save</button>
+            <button type="button" onClick={() => showHideModal(false)}>
+              Exit modal
+            </button>
+          </form>
+        )
+
+      case "note-todos":
+        return (
+          <form onSubmit={this.onNoteEditSave} className="note-edit-modal">
+            <h3>Title:</h3>
+            <textarea
+              style={modalStyle}
+              value={note.info.title}
+              name="title"
+              onChange={(ev) => onChange(ev)}
+            ></textarea>
+
+            {note.info.todos.map((todo) => {
+              return (
+                <textarea
+                  style={modalStyle}
+                  name="todos"
+                  key={todo.todoId}
+                  value={todo.txt}
+                  onChange={(ev) => onChange(ev, todo.todoId)}
+                ></textarea>
+              )
+            })}
+            <h4>Text color:</h4>
+            <input name="txtColor" type="color" onChange={onChange} />
+            <h4>Background color:</h4>
+            <input name="bgClr" type="color" onChange={onChange} />
             <button type="submit">Save</button>
             <button type="button" onClick={() => showHideModal(false)}>
               Exit modal

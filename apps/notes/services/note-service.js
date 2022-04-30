@@ -9,6 +9,7 @@ export const noteService = {
     getNoteIdx,
     setNewColor,
     editNoteById,
+    createTodo,
 }
 
 const KEY = 'notesDB'
@@ -199,7 +200,7 @@ function setNewColor(noteIdx, newColor) {
     let notes = _loadFromStorage()
     notes[noteIdx].info.txtColor = newColor
     _saveToStorage(notes)
-    return Promise.resolve()  
+    return Promise.resolve()
 }
 
 function editNoteById(noteId, note) {
@@ -210,13 +211,30 @@ function editNoteById(noteId, note) {
     return Promise.resolve()
 }
 
-function _createNote({ type, title, txt, txtColor = 'red', url, bgClr, isPinned=false, doneAt }) {
+function createTodo(txt) {
+    const id = utilService.makeId()
+    return {
+        todoId: id,
+        txt,
+        doneAt: null,
+    }
+}
+
+function _createNote({ type, title, txt, txtColor = 'red', url = null, bgClr, isPinned = false, ytVidId = null, todos }) {
     const id = utilService.makeId()
     return {
         id: 'n' + id,
         isPinned,
         type,
-        info: { title, txt, txtColor, url, bgClr, doneAt },
+        info: {
+            title,
+            txt,
+            txtColor,
+            url,
+            bgClr,
+            ytVidId,
+            todos
+        },
     }
 }
 

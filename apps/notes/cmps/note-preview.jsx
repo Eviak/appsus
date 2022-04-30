@@ -1,5 +1,6 @@
 import { eventBusService } from "../../../services/event-bus.service.js"
 import { noteService } from "../services/note-service.js"
+import { TodoNote } from "./todo-note.jsx"
 
 export class NotePreview extends React.Component {
   state = {
@@ -11,15 +12,6 @@ export class NotePreview extends React.Component {
     const editedNote = this.props.notes[noteIdx]
     this.props.showHideModal(true)
     eventBusService.emit("open-note-modal", { editedNote })
-  }
-
-  getVidId = (url) => {
-    console.log(url)
-    const relativeStartIdx = url.indexOf("watch?v=")
-    const relativeEndIdx = url.indexOf("&")
-    console.log(url.slice(relativeStartIdx + 8, relativeEndIdx))
-    const vidId = url.slice(relativeStartIdx + 8, relativeEndIdx)
-    return vidId
   }
 
   render() {
@@ -46,20 +38,21 @@ export class NotePreview extends React.Component {
 }
 
 const DynamicCmp = ({ prms }) => {
-  const { note, onNoteDelete, onColorChange, getVidId } = prms
+  const { note, onNoteDelete } = prms
   const { type, info } = note
+
+  const previewStyle = {
+    color: info.txtColor,
+    backgroundColor: info.bgClr,
+  }
 
   switch (type) {
     case "note-txt":
       return (
         <React.Fragment>
-          <h2 style={{ color: info.txtColor }}>{info.title}</h2>
-          <p style={{ color: info.txtColor }}>{info.txt}</p>
+          <h2 style={previewStyle}>{info.title}</h2>
+          <p style={previewStyle}>{info.txt}</p>
           <button onClick={() => onNoteDelete(note.id)}>Delete</button>
-          <input
-            onInput={(ev) => onColorChange(note.id, ev.target.value)}
-            type="color"
-          />
         </React.Fragment>
       )
 
@@ -67,39 +60,37 @@ const DynamicCmp = ({ prms }) => {
       return (
         <React.Fragment>
           <img src={info.url} alt="Note image" />
-          <h2>{info.title}</h2>
-          <p>{info.txt}</p>
+          <h2 style={previewStyle}>{info.title}</h2>
+          <p style={previewStyle}>{info.txt}</p>
+          <button onClick={() => onNoteDelete(note.id)}>Delete</button>
         </React.Fragment>
       )
 
     case "note-vid":
-      const vidId = getVidId(info.url)
-      console.log(vidId)
       return (
         <React.Fragment>
-          <h2>{info.title}</h2>
+          <h2 style={previewStyle}>{info.title}</h2>
           <iframe
             width="240"
             height="180"
-            src={`https://www.youtube.com/embed/${vidId}`}
+            src={`https://www.youtube.com/embed/${info.ytVidId}`}
           ></iframe>
           <button onClick={() => onNoteDelete(note.id)}>Delete</button>
-          <input
-            onInput={(ev) => onColorChange(note.id, ev.target.value)}
-            type="color"
-          />
         </React.Fragment>
       )
 
     case "note-todos":
       return (
         <React.Fragment>
-          <h2>{info.title}</h2>
-          <ul className="todo-content">
-            {info.todos.map((todo) => {
-              return <li key={todo.todoId}>{todo.txt}</li>
-            })}
+          <h2 style={previewStyle}>{info.title}</h2>
+          <ul>
+            {info.todos.map((todo) => (
+              <li style={previewStyle} key={todo.todoId}>
+                {todo.txt}
+              </li>
+            ))}
           </ul>
+          <button onClick={() => onNoteDelete(note.id)}>Delete</button>
         </React.Fragment>
       )
   }
