@@ -1,0 +1,85 @@
+.book-details{
+    margin: 0 auto;
+    width:70vw;
+    font-family: sitka-subheading;
+    
+}
+
+.book-details h4{
+    margin-bottom: 30px;
+    font-weight: 100;
+    font-size: 1.5rem;
+}
+
+.book-details h4 span{
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.book-details .book-main{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 150px;
+    
+}
+
+.book-details .image-container{
+    margin-left: 100px;
+    width:386px;
+    height:518px;
+}
+
+.book-details .book-information{
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    width: 722px;
+    
+}
+
+.book-details .book-information h1{
+    text-transform: capitalize;
+    color: var(--strong-txt-clr);
+    font-family: sitka-text;
+    font-weight: 100;
+    font-size: 2.4rem;
+    margin-bottom: 7px;
+}
+
+.book-details .book-information .author{
+    font-family: sitka-small;
+    font-size:1.6rem;
+    margin-bottom: 15px;
+}
+
+.book-details .book-information .tags span{
+    margin-inline-end: 30px;
+    font-family: quicksand-bold;
+    font-weight: 100;
+    padding:8px 25px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    color: white;
+    background-color: blueviolet;
+    margin-bottom: 15px;
+}
+
+.book-details .book-information h5{
+    margin-left: auto;
+}
+
+
+.price {
+    display:flex;
+    color: var(--strong-txt-clr);
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.price span{
+    text-decoration: line-through;
+    font-size: 2rem;
+    color: rgb(49, 49, 49);
+    
+}

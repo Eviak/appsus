@@ -1,0 +1,23 @@
+.long-text{
+    display: flex;
+    flex-direction: column;
+    background-color: #f3f3f3;
+    align-items: center;
+    justify-content: space-between;
+    width:100%;
+    padding:20px 150px
+}
+
+.long-text .expand{
+    font-family: quicksand-bold;
+    font-weight: 100;
+    font-size: 0.68rem;
+    padding: 6px;
+    text-align: center;
+    width: 100%;
+    border-top: 2px solid black;
+}
+
+.long-text .expand span:hover{
+    cursor: pointer;
+}

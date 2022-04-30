@@ -2,8 +2,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    padding: 10px 20px;
     background-color: rgb(146, 148, 120);
+}
+
+.app-header nav a {
+    font-size: 18px;
 }
 
 .app-header nav>*:not(:last-child) {

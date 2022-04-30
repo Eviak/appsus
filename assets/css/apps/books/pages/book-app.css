@@ -1,0 +1,9 @@
+.book-app{
+    width:80vw;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+
+

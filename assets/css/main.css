@@ -49,3 +49,16 @@
 @import './apps/mail/pages/mail-detail.css';
 
 @import './apps/mail/mq/mq.css';
+
+
+
+/* Book App */
+
+@import './apps/books/cmps/app-header.css';
+@import './apps/books/cmps/book-list.css';
+@import './apps/books/cmps/book-preview.css';
+@import './apps/books/cmps/long-text.css';
+@import './apps/books/cmps/review-add.css';
+
+@import './apps/books/pages/book-app.css';
+@import './apps/books/pages/book-details.css';

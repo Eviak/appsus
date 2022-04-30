@@ -9,7 +9,6 @@ function _AppHeader(props) {
 
         <nav>
             <NavLink to="/" exact>Home</NavLink>
-            <NavLink to="/about">About</NavLink>
         </nav>
     </header>
 }
