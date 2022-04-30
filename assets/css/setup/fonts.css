@@ -27,3 +27,13 @@
     font-family: roboto-bold;
     src: url('../../fonts/Roboto/Roboto-Bold.ttf')
 }
+
+@font-face {
+    font-family: adhaya;
+    src: url('../../fonts/Abhaya/AbhayaLibre-Regular.ttf')
+}
+
+@font-face {
+    font-family: safira;
+    src: url('../../fonts/Safira/Safira-march.otf') format("opentype")
+}
