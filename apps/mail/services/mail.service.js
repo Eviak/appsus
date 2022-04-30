@@ -35,7 +35,7 @@ function onSetToggle(id,field) {
     if (field === 'isStarred' && gMail[idx].isStarred) gMail[idx].isStarred = false 
     else if(field === 'isTrash' && gMail[idx].isTrash) _deleteMail(idx)  
     else gMail[idx][field] = true  
-      storageService.saveToStorage(MAIL_KEY,gMail)
+    storageService.saveToStorage(MAIL_KEY,gMail)
 }
 
 function sendMail(sendParams) {
@@ -173,6 +173,7 @@ Fusce vehicula diam ut dui hendrerit, eget fermentum massa hendrerit. Etiam cond
             to: 'muki@lala.com',
             fullName: 'Puki Lala'
         },
+        
 
     ]
 }

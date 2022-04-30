@@ -140,4 +140,7 @@
     .compose-main textarea{
         height: 493px;
     }
+    .mail-preview .subj-body {
+        width: 1324px;
+    }
 }
