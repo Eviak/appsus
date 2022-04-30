@@ -34,7 +34,8 @@ function onSetToggle(id,field) {
     const idx = gMail.findIndex(mail => mail.id === id)
     if (field === 'isStarred' && gMail[idx].isStarred) gMail[idx].isStarred = false 
     else if(field === 'isTrash' && gMail[idx].isTrash) _deleteMail(idx)  
-    else gMail[idx][field] = true    
+    else gMail[idx][field] = true  
+      storageService.saveToStorage(MAIL_KEY,gMail)
 }
 
 function sendMail(sendParams) {
