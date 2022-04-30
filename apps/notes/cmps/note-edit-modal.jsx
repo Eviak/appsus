@@ -49,9 +49,16 @@ export class NoteEditModal extends React.Component {
     }))
   }
 
+  duplicateNote(note) {
+    noteService.duplicateNote(note)
+      .then(this.props.loadNotes())
+  }
+
+
+
   render() {
     const { isShown, showHideModal } = this.props
-    const { onChange } = this
+    const { onChange, duplicateNote } = this
     const { note } = this.state
 
     if (!isShown) return <React.Fragment></React.Fragment>
@@ -83,10 +90,12 @@ export class NoteEditModal extends React.Component {
               name="txt"
               onChange={(ev) => onChange(ev)}
             ></textarea>
+
             <h4>Text color:</h4>
             <input name="txtColor" type="color" onChange={onChange} />
             <h4>Background color:</h4>
             <input name="bgClr" type="color" onChange={onChange} />
+            <button onClick={() => duplicateNote(note)}>Duplicate</button>
             <button type="submit">Save</button>
             <button type="button" onClick={() => showHideModal(false)}>
               Exit modal
@@ -94,7 +103,7 @@ export class NoteEditModal extends React.Component {
           </form>
         )
 
-      case "note-img":
+        case "note-img":
         return (
           <form onSubmit={this.onNoteEditSave} className="note-edit-modal">
             <img src={note.info.url} alt="Note image" />
@@ -110,8 +119,8 @@ export class NoteEditModal extends React.Component {
               name="txt"
               onChange={(ev) => onChange(ev)}
             ></textarea>
-            <h3>Title and text color:</h3>
-            <h4>Text color:</h4>
+            <button onClick={() => duplicateNote(note)}>Duplicate</button>
+            <h4>Title and Text color:</h4>
             <input name="txtColor" type="color" onChange={onChange} />
             <h4>Background color:</h4>
             <input name="bgClr" type="color" onChange={onChange} />
@@ -121,9 +130,9 @@ export class NoteEditModal extends React.Component {
             </button>
           </form>
         )
-
-      case "note-vid":
-        return (
+        
+        case "note-vid":
+          return (
           <form onSubmit={this.onNoteEditSave} className="note-edit-modal">
             <h3>Title:</h3>
             <textarea
@@ -143,6 +152,7 @@ export class NoteEditModal extends React.Component {
               height="180"
               src={`https://www.youtube.com/embed/${note.info.ytVidId}`}
             ></iframe>
+              <button onClick={() => duplicateNote(note)}>Duplicate</button>
             <h4>Text color:</h4>
             <input name="txtColor" type="color" onChange={onChange} />
             <h4>Background color:</h4>
@@ -168,14 +178,15 @@ export class NoteEditModal extends React.Component {
             {note.info.todos.map((todo) => {
               return (
                 <textarea
-                  style={modalStyle}
-                  name="todos"
-                  key={todo.todoId}
-                  value={todo.txt}
-                  onChange={(ev) => onChange(ev, todo.todoId)}
+                style={modalStyle}
+                name="todos"
+                key={todo.todoId}
+                value={todo.txt}
+                onChange={(ev) => onChange(ev, todo.todoId)}
                 ></textarea>
-              )
-            })}
+                )
+              })}
+              <button onClick={() => duplicateNote(note)}>Duplicate</button>
             <h4>Text color:</h4>
             <input name="txtColor" type="color" onChange={onChange} />
             <h4>Background color:</h4>

@@ -10,6 +10,7 @@ export const noteService = {
     setNewColor,
     editNoteById,
     createTodo,
+    duplicateNote,
 }
 
 const KEY = 'notesDB'
@@ -224,6 +225,16 @@ function createTodo(txt) {
         txt,
         doneAt: null,
     }
+}
+
+function duplicateNote(note) {
+    let notes = _loadFromStorage()
+    const noteIdx = noteService.getNoteIdx(note.id)
+    let newNote = note
+    newNote.id = utilService.makeId()
+    notes.splice(noteIdx, 0, newNote)
+    _saveToStorage(notes)
+    return Promise.resolve()  
 }
 
 function _createNote({ type, title, txt, txtColor = 'red', url = null, bgClr, isPinned = false, ytVidId = null, todos }) {
