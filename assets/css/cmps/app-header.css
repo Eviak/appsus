@@ -3,13 +3,26 @@
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    background-color: lightcyan;
+    background-color: rgb(146, 148, 120);
 }
 
 .app-header nav>*:not(:last-child) {
     margin-inline-end: 10px;
 }
 
+.logo {
+    color: white;
+    font-size: 2rem;
+    font-family: safira;
+    background-color: rgba(43, 43, 43, 0.6);
+    padding: 10px
+}
+
+.logo span{
+    font-family: adhaya;
+    font-size: 3rem;
+}
+
 .active {
-    color: red;
+    color: rgb(255, 255, 255);
 }
