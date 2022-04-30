@@ -7,9 +7,7 @@ export class NoteEditModal extends React.Component {
     render: 0,
   }
 
-  componentDidMount() { 
-
-   }
+  componentDidMount() {}
 
   componentWillUnmount() {
     clearModalBus()
@@ -50,15 +48,49 @@ export class NoteEditModal extends React.Component {
   }
 
   duplicateNote(note) {
-    noteService.duplicateNote(note)
-      .then(this.props.loadNotes())
+    noteService.duplicateNote(note).then(this.props.loadNotes())
   }
 
+  removeTodo = (ev, todoId) => {
+    ev.preventDefault()
+    let todosCopy = this.state.note.info.todos
+    const selectedTodoIdx = this.state.note.info.todos.findIndex(
+      (todo) => todo.todoId === todoId
+    )
+    todosCopy.splice(selectedTodoIdx, 1)
 
+    this.setState((prevState) => ({
+      ...prevState,
+      note: {
+        ...prevState.note,
+        info: {
+          ...prevState.note.info,
+          todos: todosCopy,
+        },
+      },
+    }))
+  }
+
+  addTodo = (ev) => {
+    ev.preventDefault()
+    let todosCopy = this.state.note.info.todos
+    const newTodo = noteService.createTodo()
+    todosCopy.push(newTodo)
+    this.setState((prevState) => ({
+      ...prevState,
+      note: {
+        ...prevState.note,
+        info: {
+          ...prevState.note.info,
+          todos: todosCopy,
+        },
+      },
+    }))
+  }
 
   render() {
-    const { isShown, showHideModal } = this.props
-    const { onChange, duplicateNote } = this
+    const { isShown, showHideModal, onNoteDelete } = this.props
+    const { onChange, duplicateNote, removeTodo, addTodo } = this
     const { note } = this.state
 
     if (!isShown) return <React.Fragment></React.Fragment>
@@ -69,7 +101,11 @@ export class NoteEditModal extends React.Component {
 
     if (!this.state.note) return <h1>LOADING..</h1>
 
-    const modalStyle = {
+    const bgClrStyle = {
+      backgroundColor: note.info.bgClr,
+    }
+
+    const txtInputStyle = {
       color: note.info.txtColor,
       backgroundColor: note.info.bgClr,
     }
@@ -77,15 +113,19 @@ export class NoteEditModal extends React.Component {
     switch (note.type) {
       case "note-txt":
         return (
-          <form onSubmit={this.onNoteEditSave} className="note-edit-modal">
+          <form
+            style={bgClrStyle}
+            onSubmit={this.onNoteEditSave}
+            className="note-edit-modal flex-col"
+          >
             <textarea
-              style={modalStyle}
+              style={txtInputStyle}
               value={note.info.title}
               name="title"
               onChange={(ev) => onChange(ev)}
             ></textarea>
             <textarea
-              style={modalStyle}
+              style={txtInputStyle}
               value={note.info.txt}
               name="txt"
               onChange={(ev) => onChange(ev)}
@@ -98,45 +138,54 @@ export class NoteEditModal extends React.Component {
             <button onClick={() => duplicateNote(note)}>Duplicate</button>
             <button type="submit">Save</button>
             <button type="button" onClick={() => showHideModal(false)}>
-              Exit modal
+              Exit editor
             </button>
+            <button onClick={() => onNoteDelete(note.id)}>Delete</button>
           </form>
         )
 
-        case "note-img":
+      case "note-img":
         return (
-          <form onSubmit={this.onNoteEditSave} className="note-edit-modal">
+          <form
+            style={bgClrStyle}
+            onSubmit={this.onNoteEditSave}
+            className="note-edit-modal flex-col"
+          >
             <img src={note.info.url} alt="Note image" />
             <textarea
-              style={modalStyle}
+              style={txtInputStyle}
               value={note.info.title}
               name="title"
               onChange={(ev) => onChange(ev)}
             ></textarea>
             <textarea
-              style={modalStyle}
+              style={txtInputStyle}
               value={note.info.txt}
               name="txt"
               onChange={(ev) => onChange(ev)}
             ></textarea>
-            <button onClick={() => duplicateNote(note)}>Duplicate</button>
             <h4>Title and Text color:</h4>
             <input name="txtColor" type="color" onChange={onChange} />
             <h4>Background color:</h4>
             <input name="bgClr" type="color" onChange={onChange} />
+            <button onClick={() => duplicateNote(note)}>Duplicate</button>
             <button type="submit">Save</button>
             <button type="button" onClick={() => showHideModal(false)}>
-              Exit modal
+              Exit editor
             </button>
+            <button onClick={() => onNoteDelete(note.id)}>Delete</button>
           </form>
         )
-        
-        case "note-vid":
-          return (
-          <form onSubmit={this.onNoteEditSave} className="note-edit-modal">
-            <h3>Title:</h3>
+
+      case "note-vid":
+        return (
+          <form
+            style={bgClrStyle}
+            onSubmit={this.onNoteEditSave}
+            className="note-edit-modal flex-col"
+          >
             <textarea
-              style={modalStyle}
+              style={txtInputStyle}
               value={note.info.title}
               name="title"
               onChange={(ev) => onChange(ev)}
@@ -152,24 +201,28 @@ export class NoteEditModal extends React.Component {
               height="180"
               src={`https://www.youtube.com/embed/${note.info.ytVidId}`}
             ></iframe>
-              <button onClick={() => duplicateNote(note)}>Duplicate</button>
             <h4>Text color:</h4>
             <input name="txtColor" type="color" onChange={onChange} />
             <h4>Background color:</h4>
             <input name="bgClr" type="color" onChange={onChange} />
+            <button onClick={() => duplicateNote(note)}>Duplicate</button>
             <button type="submit">Save</button>
             <button type="button" onClick={() => showHideModal(false)}>
-              Exit modal
+              Exit editor
             </button>
+            <button onClick={() => onNoteDelete(note.id)}>Delete</button>
           </form>
         )
 
       case "note-todos":
         return (
-          <form onSubmit={this.onNoteEditSave} className="note-edit-modal">
-            <h3>Title:</h3>
+          <form
+            style={bgClrStyle}
+            onSubmit={this.onNoteEditSave}
+            className="note-edit-modal flex-col"
+          >
             <textarea
-              style={modalStyle}
+              style={txtInputStyle}
               value={note.info.title}
               name="title"
               onChange={(ev) => onChange(ev)}
@@ -177,24 +230,34 @@ export class NoteEditModal extends React.Component {
 
             {note.info.todos.map((todo) => {
               return (
-                <textarea
-                style={modalStyle}
-                name="todos"
-                key={todo.todoId}
-                value={todo.txt}
-                onChange={(ev) => onChange(ev, todo.todoId)}
-                ></textarea>
-                )
-              })}
-              <button onClick={() => duplicateNote(note)}>Duplicate</button>
+                <div className="flex align-center" key={`d${todo.todoId}`}>
+                  <textarea
+                    style={txtInputStyle}
+                    name="todos"
+                    key={`ti${todo.todoId}`}
+                    value={todo.txt}
+                    onChange={(ev) => onChange(ev, todo.todoId)}
+                  ></textarea>
+                  <button
+                    key={`rb${todo.todoId}`}
+                    onClick={(ev) => removeTodo(ev, todo.todoId)}
+                  >
+                    X
+                  </button>
+                </div>
+              )
+            })}
             <h4>Text color:</h4>
             <input name="txtColor" type="color" onChange={onChange} />
             <h4>Background color:</h4>
             <input name="bgClr" type="color" onChange={onChange} />
+            <button onClick={() => duplicateNote(note)}>Duplicate</button>
+            <button onClick={addTodo}>Add todo</button>
             <button type="submit">Save</button>
             <button type="button" onClick={() => showHideModal(false)}>
-              Exit modal
+              Exit editor
             </button>
+            <button onClick={() => onNoteDelete(note.id)}>Delete</button>
           </form>
         )
     }

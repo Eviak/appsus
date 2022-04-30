@@ -1,6 +1,5 @@
 import { eventBusService } from "../../../services/event-bus.service.js"
 import { noteService } from "../services/note-service.js"
-import { TodoNote } from "./todo-note.jsx"
 
 export class NotePreview extends React.Component {
   state = {
@@ -16,19 +15,23 @@ export class NotePreview extends React.Component {
 
   render() {
     const NOTE_TYPES = ["note-txt", "note-img", "note-vid", "note-todos"]
-    const { note, onNoteDelete, onColorChange } = this.props
+    const { note, onColorChange } = this.props
     const { getVidId } = this
+    const previewStyle = {
+        backgroundColor: note.info.bgClr,
+    }
 
     return NOTE_TYPES.map((noteType) => {
       if (noteType === note.type) {
         return (
           <div
+            style={previewStyle}
             onClick={() => this.toNoteEdit(note.id)}
             key={note.id}
             className={`note-preview ${noteType} flex-col`}
           >
             <DynamicCmp
-              prms={{ note, onNoteDelete, onColorChange, getVidId }}
+              prms={{ note, onColorChange, getVidId }}
             />
           </div>
         )
@@ -38,10 +41,10 @@ export class NotePreview extends React.Component {
 }
 
 const DynamicCmp = ({ prms }) => {
-  const { note, onNoteDelete } = prms
+  const { note } = prms
   const { type, info } = note
 
-  const previewStyle = {
+  const dynPreviewStyle = {
     color: info.txtColor,
     backgroundColor: info.bgClr,
   }
@@ -50,9 +53,8 @@ const DynamicCmp = ({ prms }) => {
     case "note-txt":
       return (
         <React.Fragment>
-          <h2 style={previewStyle}>{info.title}</h2>
-          <p style={previewStyle}>{info.txt}</p>
-          <button onClick={() => onNoteDelete(note.id)}>Delete</button>
+          <h2 style={dynPreviewStyle}>{info.title}</h2>
+          <p style={dynPreviewStyle}>{info.txt}</p>
         </React.Fragment>
       )
 
@@ -60,37 +62,34 @@ const DynamicCmp = ({ prms }) => {
       return (
         <React.Fragment>
           <img src={info.url} alt="Note image" />
-          <h2 style={previewStyle}>{info.title}</h2>
-          <p style={previewStyle}>{info.txt}</p>
-          <button onClick={() => onNoteDelete(note.id)}>Delete</button>
+          <h2 style={dynPreviewStyle}>{info.title}</h2>
+          <p style={dynPreviewStyle}>{info.txt}</p>
         </React.Fragment>
       )
 
     case "note-vid":
       return (
         <React.Fragment>
-          <h2 style={previewStyle}>{info.title}</h2>
+          <h2 style={dynPreviewStyle}>{info.title}</h2>
           <iframe
             width="240"
             height="180"
             src={`https://www.youtube.com/embed/${info.ytVidId}`}
           ></iframe>
-          <button onClick={() => onNoteDelete(note.id)}>Delete</button>
         </React.Fragment>
       )
 
     case "note-todos":
       return (
         <React.Fragment>
-          <h2 style={previewStyle}>{info.title}</h2>
+          <h2 style={dynPreviewStyle}>{info.title}</h2>
           <ul>
             {info.todos.map((todo) => (
-              <li style={previewStyle} key={todo.todoId}>
+              <li style={dynPreviewStyle} key={todo.todoId}>
                 {todo.txt}
               </li>
             ))}
           </ul>
-          <button onClick={() => onNoteDelete(note.id)}>Delete</button>
         </React.Fragment>
       )
   }

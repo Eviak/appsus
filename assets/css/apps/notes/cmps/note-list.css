@@ -1,5 +1,5 @@
 .note-list {
     gap: 10px;
-    flex-wrap:wrap;
-    width: 100vw;
+    width: 95vw;
+    columns: 240px 3;
 }

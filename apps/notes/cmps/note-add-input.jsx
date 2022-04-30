@@ -94,15 +94,17 @@ export class NoteAddInput extends React.Component {
       bgClr,
     } = this.state
 
-    const { handleChange, onNoteAdd, newNote, changeTxtClr, changeBgClr } = this
+    const { handleChange, onNoteAdd, newNote, changeTxtClr, changeBgClr, onIconBtnClick } = this
 
     return (
       <section
         className="note-add-input flex align-center"
-        style={{ height: "45px" }}
+        style={inputStyle}
       >
         {!isListInputShown && (
-          <form onSubmit={(ev) => onNoteAdd(ev, newNote)}>
+          <form className="flex space-between" onSubmit={(ev) => onNoteAdd(ev, newNote)}>
+            <div className="form-details flex-col">
+
             <input //Note title input
               type="text"
               placeholder="title"
@@ -113,42 +115,65 @@ export class NoteAddInput extends React.Component {
 
             {!isVidInputShown && (
               <textarea
-                placeholder="What's on your mind?" //Note body input
-                name="txt"
-                onChange={handleChange}
-                style={inputStyle}
+              placeholder="What's on your mind?" //Note body input
+              name="txt"
+              onChange={handleChange}
+              style={inputStyle}
               />
-            )}
+              )}
 
             {isImgInputShown && (
               <textarea //Note image input
-                placeholder="Enter image URL here"
-                name="url"
-                onChange={handleChange}
-                style={{ lineHeight: "1.3333em" }}
+              placeholder="Enter image URL here"
+              name="url"
+              onChange={handleChange}
+              style={{ lineHeight: "1.3333em" }}
               />
-            )}
+              )}
 
             {isVidInputShown && (
               <textarea //Note Youtube input
-                placeholder="Enter Youtube URL here"
-                name="url"
-                onChange={handleChange}
-                style={{ lineHeight: "1.3333em" }}
+              placeholder="Enter Youtube URL here"
+              name="url"
+              onChange={handleChange}
+              style={{ lineHeight: "1.3333em" }}
               />
-            )}
-
+              )}
+            <div className="txt=clr">
             <h4>Text and Title Color:</h4>
             <input type="color" name="txtClr" onChange={changeTxtClr} />
+            </div>
+            <div className="bg-clr">
             <h4>Background Color:</h4>
             <input type="color" name="bgClr" onChange={changeBgClr} />
-            <button>Create</button>
+            </div>
+            <button name="create-btn">Create</button>
+
+            </div>
+            <div className="form-types flex-col justify-center">
+
+            <img //Icon buttons
+              onClick={() => this.onIconBtnClick("Img")}
+              src="apps/notes/img/icons/image.png"
+              alt="Add image note"
+              />
+            <img
+              onClick={() => this.onIconBtnClick("Vid")}
+              src="apps/notes/img/icons/video.png"
+              alt="Add Youtube note"
+              />
+            <img
+              onClick={() => this.onIconBtnClick("List")}
+              src="apps/notes/img/icons/list.png"
+              alt="Add list note"
+              />
+              </div>
           </form>
         )}
 
-        {isListInputShown && <TodoNote loadNotes={this.props.loadNotes} />}
+        {isListInputShown && <TodoNote onIconBtnClick={onIconBtnClick} loadNotes={this.props.loadNotes} />}
 
-        <img //Icon buttons
+        {/* <img //Icon buttons
           onClick={() => this.onIconBtnClick("Img")}
           src="apps/notes/img/icons/image.png"
           alt="Add image note"
@@ -162,7 +187,7 @@ export class NoteAddInput extends React.Component {
           onClick={() => this.onIconBtnClick("List")}
           src="apps/notes/img/icons/list.png"
           alt="Add list note"
-        />
+        /> */}
       </section>
     )
   }

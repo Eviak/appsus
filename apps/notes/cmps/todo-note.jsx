@@ -111,8 +111,9 @@ export class TodoNote extends React.Component {
 
     return (
       <React.Fragment>
-        <form>
-          <button onClick={addTodo}>New todo</button>
+        <form className="flex space-between">
+        <div className="form-details flex-col">
+          <button onClick={addTodo}>Add todo</button>
           <button onClick={saveTodo}>Save note</button>
 
           <textarea
@@ -146,9 +147,29 @@ export class TodoNote extends React.Component {
                 >
                   X
                 </button>
+
               </React.Fragment>
             )
           })}
+
+          </div>
+          <div className="form-types flex-col justify-center">
+          <img //Icon buttons
+            onClick={() => this.props.onIconBtnClick("Img")}
+            src="apps/notes/img/icons/image.png"
+            alt="Add image note"
+          />
+          <img
+            onClick={() => this.props.onIconBtnClick("Vid")}
+            src="apps/notes/img/icons/video.png"
+            alt="Add Youtube note"
+          />
+          <img
+            onClick={() => this.props.onIconBtnClick("List")}
+            src="apps/notes/img/icons/list.png"
+            alt="Add list note"
+          />
+          </div>
         </form>
       </React.Fragment>
     )

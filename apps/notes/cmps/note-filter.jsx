@@ -8,7 +8,7 @@ export class NoteFilter extends React.Component {
   render() {
 
     return (
-      <section className="note-filter">
+      <section className="note-filter flex">
         <NavLink to="notes?status=">All</NavLink>
         <NavLink to="notes?status=note-txt">Texts</NavLink>
         <NavLink to="notes?status=note-img">Images</NavLink>

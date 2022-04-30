@@ -31,6 +31,7 @@ export class NoteApp extends React.Component {
 
   onNoteDelete = (noteId) => {
     noteService.removeNote(noteId)
+    if(this.state.isNoteModalShown) this.state.isNoteModalShown = false
     this.loadNotes()
   }
 
@@ -77,7 +78,6 @@ export class NoteApp extends React.Component {
 
         <NoteList
           notes={statusToFilter}
-          onNoteDelete={onNoteDelete}
           onColorChange={onColorChange}
           showHideModal={showHideModal}
         />
@@ -86,6 +86,7 @@ export class NoteApp extends React.Component {
           loadNotes={loadNotes}
           isShown={isNoteModalShown}
           showHideModal={showHideModal}
+          onNoteDelete={onNoteDelete}
         />
       </section>
     )
