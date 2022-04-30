@@ -13,15 +13,28 @@
     color: white;
 }
 
+.compose-header button{
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 1.3rem;
+}
+
+.compose-header button:hover{
+    cursor: pointer;
+}
+
 .compose-main{
     padding: 0 16px;
     font-size: 0.875rem;
+    background-color: white;
 }
 
 .compose-main input{
     border: none;
     box-shadow:  0 -1px 0 0 rgba(100,121,143,0.122);
     padding: 8px 0;
+    font-family: roboto;
 }
 
 .compose-main input:active{
@@ -29,7 +42,7 @@
 }
 
 .compose-main textarea{
-    height: 493px;
     border:none;
     resize: none;
+    font-family: roboto;
 }

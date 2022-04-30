@@ -1,3 +1,4 @@
+import { utilService } from "../../../services/util.service.js"
 import { mailService } from "../services/mail.service.js"
 
 const { withRouter } = ReactRouterDOM
@@ -24,8 +25,14 @@ class _MailDetail extends React.Component {
             })
     }
 
+    getFullTime = (date) => {
+        const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+        console.log(`${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}, ${utilService.createHours(date)}`)
+    }
+
     render(){
-        const {subject,body,fullName} = this.state.mail
+        const {subject,body,fullName,sentAt} = this.state.mail
+        
     return <section className="mail-detail flex-col">
         <header className="detail-header">
             <h2>{subject}</h2>

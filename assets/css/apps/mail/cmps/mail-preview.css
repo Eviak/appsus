@@ -41,3 +41,28 @@
 .read >*{
     font-family: roboto;
 }
+
+.mail-preview button{
+    width:27px;
+    border:none;
+    background-color: transparent;
+}
+
+.mail-preview button{
+    cursor: pointer;
+}
+
+.mail-preview .star-button{
+    margin-right:15px;
+}
+
+.mail-preview .star-button:hover{
+    box-shadow: 0px 0px 2px 5px var(--read-bg);
+    background-color: var(--read-bg);
+    border-radius: 50%
+}
+
+.mail-preview button img{
+    width:20px;
+    height:auto;
+}

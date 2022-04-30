@@ -27,14 +27,15 @@ export class MailApp extends React.Component {
 
     loadMails = () => {
         mailService.query(this.state.criteria)
-            .then(mails => this.setState({ mails }))
+            .then(mails => this.setState({ mails }, () => this.getFoldersLen()))
     }
 
-    onMailClicked = (ev,id, field) => {
+    onMailClicked = (ev, id, field) => {
         ev.stopPropagation()
         mailService.onSetToggle(id, field)
-        if(field === 'isRead') this.props.history.push(`/mail/?id=${id}`)
-        if(field === 'isTrash') this.loadMails()
+        if (field === 'isRead') this.props.history.push(`/mail/?id=${id}`)
+        if (field === 'isTrash') this.loadMails()
+        if (field === 'isStarred') this.getFoldersLen()
     }
 
 
@@ -55,13 +56,28 @@ export class MailApp extends React.Component {
     get statusToFilter() {
         const { mails } = this.state
         const urlSrcPrm = new URLSearchParams(this.props.location.search)
-        const status = urlSrcPrm.get('status')
+        const status = urlSrcPrm.get('status') 
         return mails.filter(mail => {
             return status === 'inbox' && mail.to === 'puki@lala.com' && !mail.isTrash ||
                 status === 'sent' && mail.to !== 'puki@lala.com' && !mail.isTrash ||
                 status === 'starred' && mail.isStarred && !mail.isTrash ||
                 status === 'trash' && mail.isTrash
         })
+    }
+
+    getFoldersLen = () => {
+        const { mails } = this.state
+        if (!mails.length) return
+        const length = {}
+        const folders = ['inbox','sent','starred','trash']
+        folders.map(folder => length[folder] = mails.filter(mail => {
+            return folder === 'inbox' && mail.to === 'puki@lala.com' && !mail.isTrash ||
+                folder === 'sent' && mail.to !== 'puki@lala.com' && !mail.isTrash ||
+                folder === 'starred' && mail.isStarred && !mail.isTrash ||
+                folder === 'trash' && mail.isTrash
+        }).length)
+        this.setState((prevState) => ({...prevState,length}))
+
     }
 
 
@@ -71,11 +87,11 @@ export class MailApp extends React.Component {
         return <section className="mail-app flex">
             <section className="interface">
                 <button onClick={() => this.toggleCompose(true)}>Compose</button>
-                <MailFolderList clearCriteria={this.clearCriteria} />
+                <MailFolderList clearCriteria={this.clearCriteria} length={this.state.length} />
             </section>
             <section className="main-mail">
                 {!mails.length && <h2 className="search-results">No Results</h2>}
-                <MailList mails={this.statusToFilter} onMailClicked={this.onMailClicked}/>
+                <MailList mails={this.statusToFilter} onMailClicked={this.onMailClicked} />
                 {this.props.location.pathname.includes('/mail/') && <MailDetail />}
                 {compose && <MailCompose onSendMail={this.onSendMail} toggleCompose={this.toggleCompose} />}
             </section>
