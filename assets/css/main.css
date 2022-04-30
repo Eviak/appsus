@@ -55,7 +55,6 @@
 
 /* Book App */
 
-@import './apps/books/cmps/app-header.css';
 @import './apps/books/cmps/book-list.css';
 @import './apps/books/cmps/book-preview.css';
 @import './apps/books/cmps/long-text.css';
