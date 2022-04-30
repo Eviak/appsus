@@ -7,6 +7,7 @@ export function Home() {
 
       <div className="to-apps-btns">
         <Link to="mail?status=inbox">To Mail app</Link>
+        <Link to="books">To Books app</Link>
         <Link to="notes">To Notes app</Link>
       </div>
     </section>

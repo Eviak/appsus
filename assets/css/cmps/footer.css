@@ -1,4 +1,8 @@
 footer {
+    text-align: center;
+    line-height: 130px;
     height: 130px;
+    width: 100%;
     background-color: rgba(43, 43, 43, 0.6);
+    
 }

@@ -23,6 +23,15 @@
     padding: 30px;
     background-color: rgb(223, 233, 214);
     box-shadow: -1px 1px 3px 1px #b3b3b3;
+    margin-inline-end: 40px;
+}
+
+.home a :last-of-type {
+    border-radius: 6px;
+    border: 1px solid rgb(201, 201, 201);
+    padding: 30px;
+    background-color: rgb(146, 148, 120);
+    box-shadow: -1px 1px 3px 1px #b3b3b3;
 }
 
 .home > img:first-child {
