@@ -1,0 +1,130 @@
+@media (max-width: 995px) {
+    .mail-app .interface button {
+        padding-left: 4px;
+    }
+
+    .mail-preview {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .mail-preview .subj-body {
+        flex-direction: column;
+        align-items: baseline;
+    }
+
+    .mail-preview .body {
+        max-width: 85vw;
+    }
+
+    .mail-compose {
+        height: 400px;
+        width: 400px;
+        right: 20px;
+    }
+
+    
+}
+
+@media (max-width: 792px) {
+    .mail-app {
+        flex-direction: column;
+    }
+
+    .interface {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px
+    }
+
+    .interface button {
+        margin-bottom: 5px;
+        padding: 10px 6px;
+    }
+
+    .mail-folder-list {
+        flex-direction: row;
+    }
+
+    .mail-folder-list .folder {
+        padding: 5px 14px;
+    }
+
+    .mail-folder-list .folder:hover {
+        border-radius: 12px;
+    }
+
+    .mail-folder-list h5 {
+        display: block;
+    }
+
+    .folder-active {
+        border-radius: 12px;
+    }
+
+    .main-mail {
+        width: 100%;
+    }
+
+    .mail-detail {
+        width: 100%;
+        padding: 25px;
+    }
+
+    .mail-compose {
+        height: 100vh;
+        width: 100vw;
+        right: 0;
+    }
+
+    .compose-main {
+        height:100vh;
+    }
+
+    .compose-main textarea{
+        height:100vh;
+        order:1;
+    }
+    .compose-main button{
+        background-color: rgb(102, 156, 202);
+        border-radius: 12px;
+        border:none;
+        padding:10px;
+        color:white;
+    }
+
+    
+}
+
+@media (max-width: 439px) {
+    .interface {
+        gap: 0;
+    }
+
+    .mail-folder-list .folder {
+        margin-right: 0;
+    }
+}
+
+
+
+@media (min-width: 793px) {
+    .interface button {
+        margin-left: 0;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .compose-main textarea{
+        height:100vh;
+    }
+
+}
+
+
+@media (min-width: 996px){
+    .compose-main textarea{
+        height: 493px;
+    }
+}

@@ -1,0 +1,36 @@
+.mail-folder-list {
+    margin-bottom: 5px;
+}
+
+.mail-folder-list .folder {
+    padding: 5px 5px;
+    margin-right: 10px;
+}
+
+.mail-folder-list .folder:hover {
+    background-color: var(--selected-folder-bg);
+    color: var(--selected-folder-txt);
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+
+}
+
+.folder-active{
+    background-color: var(--selected-folder-bg);
+    color: var(--selected-folder-txt);
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+.mail-folder-list .folder.folder-active h5{
+    display: block;
+}
+
+.mail-folder-list .folder:hover h5 {
+    display: block;
+}
+
+
+.mail-folder-list h5 {
+    display: none;
+}

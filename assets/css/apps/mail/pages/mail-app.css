@@ -2,16 +2,27 @@
 
 .mail-app{
     background-color: #ffff;
-    width: 100vw;
+    width: 100%;
     font-family: roboto;
 }
 
 .interface{
-    width: 10%;
+    min-width: 10%;
 }
 
 .interface button{
     margin-bottom: 20px;
+    background-color: #ffff;
+    border-radius: 30px;
+    font-family: roboto-bold;
+    padding:10px 20px;
+    border:none;
+    box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302),0 1px 3px 1px rgba(60,64,67,0.149);
+    color: #3c4043;
+}
+.interface button:hover{
+    background-color: var(--read-bg);
+    cursor: pointer;
 }
 
 .main-mail{

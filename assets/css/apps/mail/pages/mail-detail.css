@@ -1,0 +1,15 @@
+.mail-detail{
+    width: 90%;
+}
+
+.detail-header {
+    margin-bottom: 30px;
+}
+
+.detail-information{
+    margin-bottom: 30px;
+}
+
+.detail-information .time-sent{
+    margin-left: auto;
+}
