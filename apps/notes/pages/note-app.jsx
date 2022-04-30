@@ -1,75 +1,94 @@
-
 import { NoteAddInput } from "../cmps/note-add-input.jsx"
 import { NoteList } from "../cmps/note-list.jsx"
 import { NoteEditModal } from "../cmps/note-edit-modal.jsx"
 import { noteService } from "../services/note-service.js"
+import { NoteFilter } from "../cmps/note-filter.jsx"
 
 export class NoteApp extends React.Component {
-   state = {
-        notes: [],
-        newNote: {
-            title: '',
-            txt: '',
-            txtColor: '#00c0ff',
-        },
-        editedNote: null,
-        isNoteModalShown: false,
-   }
+  state = {
+    notes: [],
+    editedNote: null,
+    isNoteModalShown: false,
+    filterBy: null,
+  }
 
-   componentDidMount() { 
-       this.loadNotes()
-    }
+  componentDidMount() {
+    this.loadNotes()
+  }
 
-    loadNotes = () => {
-        noteService.query()
-            .then(notes => this.setState({ notes }))
-    }
+  loadNotes = () => {
+    noteService.query()
+        .then((notes) => this.setState({ notes }))
+  }
 
-    onNoteAdd = (ev) => {
-        ev.preventDefault()
-        noteService.addNewNote(this.state.newNote)
-        this.loadNotes()
-    }
-    
-    onNoteDelete = (noteId) => {
-        noteService.removeNote(noteId)
-        this.loadNotes()
+  onSetFilter = (filterBy) => {
+    this.setState({filterBy}, this.loadNotes)
 
-    }
+    const urlSrcPrm = new URLSearchParams(filterBy)
+    const searchStr = urlSrcPrm.toString()
+    this.props.history.push(`/note?${searchStr}`)
+  }
 
-    onColorChange = (noteId, newColor) => {
-        const noteIdx = noteService.getNoteIdx(noteId)
-        noteService.setNewColor(noteIdx, newColor)
-        this.loadNotes()
-    }
+  onNoteDelete = (noteId) => {
+    noteService.removeNote(noteId)
+    if(this.state.isNoteModalShown) this.state.isNoteModalShown = false
+    this.loadNotes()
+  }
 
-    handleChange = ({ target }) => {
-        const value = target.value
-        const field = target.name
-        this.setState((prevState) => ({ newNote: { ...prevState.newNote, [field]: value } }))
-    }
+  onColorChange = (noteId, newColor) => {
+    const noteIdx = noteService.getNoteIdx(noteId)
+    noteService.setNewColor(noteIdx, newColor)
+    this.loadNotes()
+  }
 
-    toggleNoteModalShown = (isShown) => {
-        this.setState({isNoteModalShown: isShown})
-        this.loadNotes()
-    }
+  showHideModal = (isShown) => {
+    this.setState({ isNoteModalShown: isShown })
+    this.loadNotes()
+  }
 
+  get statusToFilter() {
+    const { notes } = this.state
+    const urlSrcPrm = new URLSearchParams(this.props.location.search)
+    const status = urlSrcPrm.get('status')
+    if (!status) return notes
+    return notes.filter(note => {
+        return status === note.type
+    })
+}
 
-   render() {
-       const { handleChange, onNoteAdd, onNoteDelete, onColorChange, toggleNoteModalShown} = this
-       const { notes,isNoteModalShown } = this.state
+  render() {
+    const {
+      onNoteDelete,
+      onColorChange,
+      showHideModal,
+      loadNotes,
+      statusToFilter
+    } = this
+    const { notes, isNoteModalShown } = this.state
 
-       if (!notes) return <div>loading...</div>
+    if (!notes) return <div>loading...</div>
 
-        if (!notes) return <React.Fragment></React.Fragment>
-        return <section className="note-app flex-col align-center">
-            <NoteAddInput  onNoteAdd={onNoteAdd} handleChange={handleChange} />
-            <NoteList 
-            notes={notes}
-            onNoteDelete={onNoteDelete} 
-            onColorChange={onColorChange}
-            toggleNoteModalShown={toggleNoteModalShown} />
-            <NoteEditModal isShown={isNoteModalShown} />
-        </section>
-   }
+    if (!notes) return <React.Fragment></React.Fragment>
+    return (
+      <section className="note-app flex-col align-center">
+        <NoteAddInput  
+        loadNotes={loadNotes} />
+
+        <NoteFilter />
+
+        <NoteList
+          notes={statusToFilter}
+          onColorChange={onColorChange}
+          showHideModal={showHideModal}
+        />
+
+        <NoteEditModal
+          loadNotes={loadNotes}
+          isShown={isNoteModalShown}
+          showHideModal={showHideModal}
+          onNoteDelete={onNoteDelete}
+        />
+      </section>
+    )
+  }
 }

@@ -2,3 +2,7 @@
     /* max-width: 100vw; */
     font-family: roboto, Arial, sans-serif;
 }
+
+.note-app button {
+    cursor: pointer;
+}

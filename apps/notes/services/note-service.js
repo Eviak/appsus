@@ -9,6 +9,8 @@ export const noteService = {
     getNoteIdx,
     setNewColor,
     editNoteById,
+    createTodo,
+    duplicateNote,
 }
 
 const KEY = 'notesDB'
@@ -166,12 +168,18 @@ const gNotes = [{
     }
 ]
 
-function query() {
+function query(filterBy) {
     let notes = _loadFromStorage()
     if (!notes) {
         notes = gNotes
         _saveToStorage(notes)
     }
+
+    if (filterBy) {
+        let { type } = filterBy
+
+    }
+
     return Promise.resolve(notes)
 }
 
@@ -199,23 +207,65 @@ function setNewColor(noteIdx, newColor) {
     let notes = _loadFromStorage()
     notes[noteIdx].info.txtColor = newColor
     _saveToStorage(notes)
+    return Promise.resolve()
+}
+
+function editNoteById(noteId, note) {
+    let notes = _loadFromStorage()
+    const noteIdx = getNoteIdx(noteId)
+    notes.splice(noteIdx, 1, note)
+    _saveToStorage(notes)
+    return Promise.resolve()
+}
+
+function createTodo(txt) {
+    const id = utilService.makeId()
+    return {
+        todoId: id,
+        txt,
+        doneAt: null,
+    }
+}
+
+function duplicateNote(note) {
+    let notes = _loadFromStorage()
+    const noteIdx = noteService.getNoteIdx(note.id)
+    let newNote = note
+    newNote.id = utilService.makeId()
+    notes.splice(noteIdx, 0, newNote)
+    _saveToStorage(notes)
     return Promise.resolve()  
 }
 
-function editNoteById(noteId, txt) {
-    let notes = _loadFromStorage()
-    const noteIdx = getNoteIdx(noteId)
-    notes[noteIdx].info.txt = txt
-}
-
-function _createNote({ title, txt, txtColor = 'red' }) {
+function _createNote({ type, title, txt, txtColor = 'red', url = null, bgClr, isPinned = false, ytVidId = null, todos }) {
     const id = utilService.makeId()
     return {
         id: 'n' + id,
-        type: 'note-txt',
-        info: { title, txt, txtColor },
+        isPinned,
+        type,
+        info: {
+            title,
+            txt,
+            txtColor,
+            url,
+            bgClr,
+            ytVidId,
+            todos
+        },
     }
 }
+
+// get statusToFilter() {
+//     const { mails } = this.state
+//     const urlSrcPrm = new URLSearchParams(this.props.location.search)
+//     const status = urlSrcPrm.get('status')
+//     return mails.filter(mail => {
+//         return status === 'inbox' && mail.to === 'puki@lala.com' && !mail.isTrash ||
+//             status === 'sent' && mail.to !== 'puki@lala.com' && !mail.isTrash ||
+//             status === 'starred' && mail.isStarred && !mail.isTrash ||
+//             status === 'trash' && mail.isTrash
+//     })
+// }
 
 function _createRndTextNote() {
     const title = utilService.makeId()

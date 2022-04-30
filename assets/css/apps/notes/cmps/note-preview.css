@@ -1,22 +1,37 @@
 .note-preview {
-    border: 1px rgba(224, 224, 224, 1) solid;
-    width: 240px;
-    border-radius: 6px;
-    font-size: 0.875rem;
+  border: 1px rgba(224, 224, 224, 1) solid;
+  width: 240px;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  margin-bottom: 10px;
+
+  -webkit-column-break-inside: avoid;
+  page-break-inside: avoid;
+  break-inside: avoid;
 }
 
 .note-preview > *:not(img) {
-    padding: 0 16px;
+  padding: 0 16px;
+}
+
+.note-preview[class~=note-img] {
+    padding-bottom: 10px;
 }
 
 .note-preview h2 {
-    font-size: 1rem;
-    margin-top: 12px;
-    margin-bottom: 10px;
+  font-size: 1rem;
+  margin-top: 12px;
+  margin-bottom: 10px;
 }
 
-
-
 .note-preview .todo-content {
-    padding: 0 16px;
+  padding: 0 16px;
+}
+
+.note-preview button {
+  width: 80px;
+  background-color: var(--preview-color);
+  border: 1px solid rgb(152, 184, 184);
+  border-radius: 5px;
+  box-shadow: -1px 2px 4px 1px #cbcbcb;
 }
