@@ -1,8 +1,20 @@
-export class NoteFilter extends React.Component {
-   state = {
+const { NavLink } = ReactRouterDOM
 
-   }
-   render() {
-       return <section className="note-filter">NoteFilter</section>
-   }
+export class NoteFilter extends React.Component {
+  state = {
+    filterActive: false,
+  }
+
+  render() {
+
+    return (
+      <section className="note-filter">
+        <NavLink to="notes?status=">All</NavLink>
+        <NavLink to="notes?status=note-txt">Texts</NavLink>
+        <NavLink to="notes?status=note-img">Images</NavLink>
+        <NavLink to="notes?status=note-vid">Videos</NavLink>
+        <NavLink to="notes?status=note-todos">Lists</NavLink>
+      </section>
+    )
+  }
 }

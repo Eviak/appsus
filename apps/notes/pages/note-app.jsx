@@ -2,12 +2,14 @@ import { NoteAddInput } from "../cmps/note-add-input.jsx"
 import { NoteList } from "../cmps/note-list.jsx"
 import { NoteEditModal } from "../cmps/note-edit-modal.jsx"
 import { noteService } from "../services/note-service.js"
+import { NoteFilter } from "../cmps/note-filter.jsx"
 
 export class NoteApp extends React.Component {
   state = {
     notes: [],
     editedNote: null,
     isNoteModalShown: false,
+    filterBy: null,
   }
 
   componentDidMount() {
@@ -17,6 +19,14 @@ export class NoteApp extends React.Component {
   loadNotes = () => {
     noteService.query()
         .then((notes) => this.setState({ notes }))
+  }
+
+  onSetFilter = (filterBy) => {
+    this.setState({filterBy}, this.loadNotes)
+
+    const urlSrcPrm = new URLSearchParams(filterBy)
+    const searchStr = urlSrcPrm.toString()
+    this.props.history.push(`/note?${searchStr}`)
   }
 
   onNoteDelete = (noteId) => {
@@ -35,12 +45,23 @@ export class NoteApp extends React.Component {
     this.loadNotes()
   }
 
+  get statusToFilter() {
+    const { notes } = this.state
+    const urlSrcPrm = new URLSearchParams(this.props.location.search)
+    const status = urlSrcPrm.get('status')
+    if (!status) return notes
+    return notes.filter(note => {
+        return status === note.type
+    })
+}
+
   render() {
     const {
       onNoteDelete,
       onColorChange,
       showHideModal,
       loadNotes,
+      statusToFilter
     } = this
     const { notes, isNoteModalShown } = this.state
 
@@ -52,8 +73,10 @@ export class NoteApp extends React.Component {
         <NoteAddInput  
         loadNotes={loadNotes} />
 
+        <NoteFilter />
+
         <NoteList
-          notes={notes}
+          notes={statusToFilter}
           onNoteDelete={onNoteDelete}
           onColorChange={onColorChange}
           showHideModal={showHideModal}

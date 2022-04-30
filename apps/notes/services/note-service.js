@@ -167,12 +167,18 @@ const gNotes = [{
     }
 ]
 
-function query() {
+function query(filterBy) {
     let notes = _loadFromStorage()
     if (!notes) {
         notes = gNotes
         _saveToStorage(notes)
     }
+
+    if (filterBy) {
+        let { type } = filterBy
+
+    }
+
     return Promise.resolve(notes)
 }
 
@@ -237,6 +243,18 @@ function _createNote({ type, title, txt, txtColor = 'red', url = null, bgClr, is
         },
     }
 }
+
+// get statusToFilter() {
+//     const { mails } = this.state
+//     const urlSrcPrm = new URLSearchParams(this.props.location.search)
+//     const status = urlSrcPrm.get('status')
+//     return mails.filter(mail => {
+//         return status === 'inbox' && mail.to === 'puki@lala.com' && !mail.isTrash ||
+//             status === 'sent' && mail.to !== 'puki@lala.com' && !mail.isTrash ||
+//             status === 'starred' && mail.isStarred && !mail.isTrash ||
+//             status === 'trash' && mail.isTrash
+//     })
+// }
 
 function _createRndTextNote() {
     const title = utilService.makeId()
