@@ -37,3 +37,38 @@
     font-family: safira;
     src: url('../../fonts/Safira/Safira-march.otf') format("opentype")
 }
+
+@font-face {
+    font-family: gadugi;
+    src: url('../../fonts/Gadugi.ttf');
+}
+
+@font-face {
+    font-family: oldstyle;
+    src: url('../../fonts/OLDSH___.TTF');
+}
+
+@font-face {
+    font-family: quicksand;
+    src: url('../../fonts/Quicksand_Book.otf');
+}
+
+@font-face {
+    font-family: quicksand-bold;
+    src: url('../../fonts/Quicksand_Bold.otf');
+}
+
+@font-face {
+    font-family: sitka-subheading;
+    src: url('../../fonts/SitkaSubheading-03.ttf');
+}
+
+@font-face {
+    font-family: sitka-text;
+    src: url('../../fonts/SitkaText-02.ttf');
+}
+
+@font-face {
+    font-family: sitka-small;
+    src: url('../../fonts/SitkaSmall-01.ttf');
+}
