@@ -3,7 +3,9 @@ const { Link } = ReactRouterDOM
 export function Home() {
   return (
     <section className="home flex-col align-center">
-      <img src="../assets/img/home-bg.png" alt="Background image" />
+      <div className="image-container">
+      {/* <img src="https://cdn.discordapp.com/attachments/598242619851800576/970398725765754931/unknown.png" alt="Background image" /> */}
+      </div>
 
       <div className="to-apps-btns">
         <Link to="mail?status=inbox">To Mail app</Link>
