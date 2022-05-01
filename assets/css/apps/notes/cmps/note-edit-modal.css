@@ -1,27 +1,74 @@
 .note-edit-modal {
     position: fixed;
-    width: 300px;
-    padding: 15px ;
+    width: 370px;
     border-radius: 8px;
+    background-color: white;
     border: 1px solid rgb(219, 219, 219);
 }
 
+.note-edit-modal > * {
+    padding: 20px 25px;
+}
+
+.note-edit-modal img[class=modal-img] {
+    width: 370px;
+    padding: 0;
+}
+
+.note-edit-modal .img-modal-content {
+    padding: 10px 15px 25px 15px;
+    
+}
+
 .note-edit-modal textarea {
-    border-radius: 5px;
+    width: 270px;
+    border-radius: 4px;
     border: none;
     font-family: roboto, Arial, sans-serif;
     font-size: 1rem;
     resize: none;
     margin-bottom: 10px;
-    border-bottom: 1px solid rgba(235, 235, 235, 0.233);
+}
+
+.note-edit-modal textarea:hover {
+    outline: 2px solid rgb(241, 241, 241);
+}
+
+.note-edit-modal textarea:focus {
+    outline: 2px solid rgb(241, 241, 241);
+}
+
+.note-edit-modal > textarea:first-of-type, .img-modal textarea:first-of-type {
+    font-size: 1.375rem;
+    font-weight: bold;
+    width: 318px;
 }
 
 .note-edit-modal h4{
-    display: inline;
-    width: 200px;
+    margin-inline-end: 10px;
+}
+
+.note-edit-modal input[class=exit-modal-btn] {
+    padding: 0;
+    background-color: rgba(167, 167, 167, 0.322);
+    position: absolute;
+    right: 6px;
+    top: 10px;
+    border: 1px solid rgba(201, 201, 201, 0.336);
+    transform: translateX(-11px);
+}
+
+.note-edit-modal .modal-todo {
+    border-bottom: 1px solid rgba(197, 197, 197, 0.233);
+    margin-bottom: 10px;
 }
 
 .note-edit-modal input[type=color] {
+    width: 30px;
+    height: 30px;
+}
+
+.note-edit-modal input[type=image] {
     width: 30px;
     height: 30px;
 }
@@ -30,14 +77,15 @@
     border: 1px solid rgb(201, 201, 201);
     border-radius: 5px;
     margin: 5px;
-}
-
-.note-edit-modal textarea:first-of-type {
-    font-size: 1.375rem;
+    transform: translateX(13px);
 }
 
 .note-edit-modal hr {
     position: absolute;
     width: 270px;
     transform: translateY(23px);
+}
+
+.note-edit-modal .modal-icons {
+    gap: 14px;
 }

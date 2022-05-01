@@ -1,4 +1,5 @@
 import { noteService } from "../services/note-service.js"
+import { NoteColorPicker } from "./note-color-picker.jsx"
 
 export class TodoNote extends React.Component {
   state = {
@@ -111,64 +112,80 @@ export class TodoNote extends React.Component {
 
     return (
       <React.Fragment>
-        <form className="flex space-between">
-        <div className="form-details flex-col">
-          <button onClick={addTodo}>Add todo</button>
-          <button onClick={saveTodo}>Save note</button>
+        <form className="todo-note flex space-between">
+          <div className="form-details flex-col">
 
-          <textarea
-            name="title"
-            onChange={handleTodoChange}
-            value={title}
-            placeholder="Title"
-            style={todoStyle}
-          ></textarea>
+            <textarea
+              name="title"
+              onChange={handleTodoChange}
+              value={title}
+              placeholder="Title"
+              style={todoStyle}
+            ></textarea>
 
-          <h4>Text color:</h4>
-          <input name="txtColor" type="color" onChange={handleTodoChange} />
-          <h4>Background color:</h4>
-          <input name="bgClr" type="color" onChange={handleTodoChange} />
+            <div className="edit-color-picker flex align-center">
+              <h4>Background color:</h4>
+              <NoteColorPicker changeBgClr={this.props.changeBgClr} />
+            </div>
 
-          {todos.map((todo) => {
-            return (
-              <React.Fragment key={`rf${todo.todoId}`}>
-                <textarea
-                  key={`ti${todo.todoId}`}
-                  name="todo-item"
-                  onChange={(ev) => handleTodoChange(ev, todo.todoId)}
-                  onFocus={() => handleTodoFocus(todo.todoId)}
-                  value={todo.txt}
-                  placeholder="Todo item"
-                  style={todoStyle}
-                ></textarea>
-                <button
-                  key={`rb${todo.todoId}`}
-                  onClick={(ev) => removeTodo(ev, todo.todoId)}
+            <div className="list-ctrl-icons flex">
+              <input
+                className="add-todo-btn"
+                type="image"
+                src="/apps/notes/img/icons/add.png"
+                alt="Add"
+                onClick={addTodo}
+              />
+              <input
+                className="add-todo-btn"
+                type="image"
+                src="/apps/notes/img/icons/save.png"
+                alt="Save"
+                onClick={saveTodo}
+              />
+            </div>
+
+            {todos.map((todo) => {
+              return (
+                <div
+                  className="todo-item-container flex"
+                  key={`rf${todo.todoId}`}
                 >
-                  X
-                </button>
-
-              </React.Fragment>
-            )
-          })}
-
+                  <textarea
+                    key={`ti${todo.todoId}`}
+                    name="todo-item"
+                    onChange={(ev) => handleTodoChange(ev, todo.todoId)}
+                    onFocus={() => handleTodoFocus(todo.todoId)}
+                    value={todo.txt}
+                    placeholder="Todo item"
+                    style={todoStyle}
+                  ></textarea>
+                  <button
+                    key={`rb${todo.todoId}`}
+                    onClick={(ev) => removeTodo(ev, todo.todoId)}
+                  >
+                    X
+                  </button>
+                </div>
+              )
+            })}
           </div>
           <div className="form-types flex-col justify-center">
-          <img //Icon buttons
-            onClick={() => this.props.onIconBtnClick("Img")}
-            src="apps/notes/img/icons/image.png"
-            alt="Add image note"
-          />
-          <img
-            onClick={() => this.props.onIconBtnClick("Vid")}
-            src="apps/notes/img/icons/video.png"
-            alt="Add Youtube note"
-          />
-          <img
-            onClick={() => this.props.onIconBtnClick("List")}
-            src="apps/notes/img/icons/list.png"
-            alt="Add list note"
-          />
+            <img //Icon buttons
+              onClick={() => this.props.onIconBtnClick("Img")}
+              src="apps/notes/img/icons/image.png"
+              alt="Add image note"
+            />
+            <img
+              onClick={() => this.props.onIconBtnClick("Vid")}
+              src="apps/notes/img/icons/video.png"
+              alt="Add Youtube note"
+            />
+            <img
+              onClick={() => this.props.onIconBtnClick("List")}
+              src="apps/notes/img/icons/list.png"
+              alt="Add list note"
+            />
           </div>
         </form>
       </React.Fragment>

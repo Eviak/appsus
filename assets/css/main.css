@@ -35,6 +35,12 @@
 @import './apps/notes/cmps/note-add-input.css';
 @import './apps/notes/cmps/note-edit-modal.css';
 @import './apps/notes/cmps/note-filter.css';
+@import './apps/notes/cmps/note-color-picker.css';
+@import './apps/notes/cmps/todo-note.css';
+
+/* MQ */
+
+@import './apps/notes/mq/mq.css';
 
 
 

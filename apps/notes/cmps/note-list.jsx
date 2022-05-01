@@ -2,7 +2,7 @@ import { NotePreview } from "./note-preview.jsx"
 
 export function NoteList({ notes, onColorChange, showHideModal}) {
   return (
-    <section className="note-list" style={{ height: "1000px" }}>
+    <section className="note-list">
       {notes.map((note) => (
         <NotePreview 
         key={note.id}

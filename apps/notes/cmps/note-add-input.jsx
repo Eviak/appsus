@@ -1,4 +1,5 @@
 import { noteService } from "../services/note-service.js"
+import { NoteColorPicker } from "./note-color-picker.jsx"
 import { TodoNote } from "./todo-note.jsx"
 
 export class NoteAddInput extends React.Component {
@@ -7,7 +8,7 @@ export class NoteAddInput extends React.Component {
     isImgInputShown: false,
     isVidInputShown: false,
     isListInputShown: false,
-    txtColor: "#00c0ff",
+    txtColor: "#202124",
     bgClr: "#FFF",
   }
 
@@ -15,8 +16,8 @@ export class NoteAddInput extends React.Component {
     type: "note-txt",
     title: "",
     txt: "",
-    txtColor: "#00c0ff",
-    bgClor: "#fff",
+    txtColor: "#202124",
+    bgColor: "#fff",
     url: null,
     ytVidId: null,
     todos: {
@@ -70,15 +71,16 @@ export class NoteAddInput extends React.Component {
     return vidId
   }
 
-  changeTxtClr = ({ target }) => {
-    this.newNote.txtColor = target.value
-    this.setState({ txtColor: target.value })
+  changeTxtClr = (color) => {
+    this.newNote.txtColor = color
+    this.setState({ txtColor: color })
   }
 
-  changeBgClr = ({ target }) => {
-    this.newNote.bgClr = target.value
-    this.setState({ bgClr: target.value })
+  changeBgClr = (color) => {
+    this.newNote.bgClr = color
+    this.setState({ bgClr: color })
   }
+
 
   render() {
     const inputStyle = {
@@ -90,104 +92,92 @@ export class NoteAddInput extends React.Component {
       isImgInputShown,
       isVidInputShown,
       isListInputShown,
-      txtColor,
-      bgClr,
     } = this.state
 
-    const { handleChange, onNoteAdd, newNote, changeTxtClr, changeBgClr, onIconBtnClick } = this
+    const {
+      handleChange,
+      onNoteAdd,
+      newNote,
+      changeBgClr,
+      onIconBtnClick,
+    } = this
 
     return (
-      <section
-        className="note-add-input flex align-center"
-        style={inputStyle}
-      >
+      <section className="note-add-input flex align-center" style={inputStyle}>
         {!isListInputShown && (
-          <form className="flex space-between" onSubmit={(ev) => onNoteAdd(ev, newNote)}>
+          <form
+            className="flex space-between"
+            onSubmit={(ev) => onNoteAdd(ev, newNote)}
+          >
             <div className="form-details flex-col">
-
-            <input //Note title input
-              type="text"
-              placeholder="title"
-              name="title"
-              onChange={handleChange}
-              style={inputStyle}
-            />
-
-            {!isVidInputShown && (
-              <textarea
-              placeholder="What's on your mind?" //Note body input
-              name="txt"
-              onChange={handleChange}
-              style={inputStyle}
+              <input //Note title input
+                type="text"
+                placeholder="title"
+                name="title"
+                onChange={handleChange}
+                style={inputStyle}
               />
+
+              {!isVidInputShown && (
+                <textarea
+                  placeholder="What's on your mind?" //Note body input
+                  name="txt"
+                  onChange={handleChange}
+                  style={inputStyle}
+                />
               )}
 
-            {isImgInputShown && (
-              <textarea //Note image input
-              placeholder="Enter image URL here"
-              name="url"
-              onChange={handleChange}
-              style={{ lineHeight: "1.3333em" }}
-              />
+              {isImgInputShown && (
+                <textarea //Note image input
+                  placeholder="Enter image URL here"
+                  name="url"
+                  onChange={handleChange}
+                  style={{ lineHeight: "1.3333em" }}
+                />
               )}
 
-            {isVidInputShown && (
-              <textarea //Note Youtube input
-              placeholder="Enter Youtube URL here"
-              name="url"
-              onChange={handleChange}
-              style={{ lineHeight: "1.3333em" }}
-              />
+              {isVidInputShown && (
+                <textarea //Note Youtube input
+                  placeholder="Enter Youtube URL here"
+                  name="url"
+                  onChange={handleChange}
+                  style={{ lineHeight: "1.3333em" }}
+                />
               )}
-            <div className="txt=clr">
-            <h4>Text and Title Color:</h4>
-            <input type="color" name="txtClr" onChange={changeTxtClr} />
-            </div>
-            <div className="bg-clr">
-            <h4>Background Color:</h4>
-            <input type="color" name="bgClr" onChange={changeBgClr} />
-            </div>
-            <button name="create-btn">Create</button>
+              <div className="bg-clr-container flex align-center">
+                <h4>Background Color:</h4>
 
+                <NoteColorPicker changeBgClr={changeBgClr} />
+              </div>
+              <button type="submit" name="create-btn">Create</button>
             </div>
             <div className="form-types flex-col justify-center">
-
-            <img //Icon buttons
-              onClick={() => this.onIconBtnClick("Img")}
-              src="apps/notes/img/icons/image.png"
-              alt="Add image note"
+              <img //Icon buttons
+                onClick={() => this.onIconBtnClick("Img")}
+                src="apps/notes/img/icons/image.png"
+                alt="Add image note"
               />
-            <img
-              onClick={() => this.onIconBtnClick("Vid")}
-              src="apps/notes/img/icons/video.png"
-              alt="Add Youtube note"
+              <img
+                onClick={() => this.onIconBtnClick("Vid")}
+                src="apps/notes/img/icons/video.png"
+                alt="Add Youtube note"
               />
-            <img
-              onClick={() => this.onIconBtnClick("List")}
-              src="apps/notes/img/icons/list.png"
-              alt="Add list note"
+              <img
+                onClick={() => this.onIconBtnClick("List")}
+                src="apps/notes/img/icons/list.png"
+                alt="Add list note"
               />
-              </div>
+            </div>
           </form>
         )}
 
-        {isListInputShown && <TodoNote onIconBtnClick={onIconBtnClick} loadNotes={this.props.loadNotes} />}
-
-        {/* <img //Icon buttons
-          onClick={() => this.onIconBtnClick("Img")}
-          src="apps/notes/img/icons/image.png"
-          alt="Add image note"
-        />
-        <img
-          onClick={() => this.onIconBtnClick("Vid")}
-          src="apps/notes/img/icons/video.png"
-          alt="Add Youtube note"
-        />
-        <img
-          onClick={() => this.onIconBtnClick("List")}
-          src="apps/notes/img/icons/list.png"
-          alt="Add list note"
-        /> */}
+        {isListInputShown && (
+          <TodoNote
+            onIconBtnClick={onIconBtnClick}
+            loadNotes={this.props.loadNotes}
+            changeBgClr={changeBgClr}
+          />
+        )}
       </section>
     )
   }

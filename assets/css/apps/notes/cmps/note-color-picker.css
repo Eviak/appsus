@@ -1,0 +1,21 @@
+.note-color-picker .add-bg-color {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    border: solid rgba(139, 139, 139, 0.473) 1px;
+}
+
+.note-color-picker {
+}
+
+.note-color-picker img {
+    margin-inline-end: 8px;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+}
+
+.note-color-picker .color-picker-colors {
+    flex-wrap: wrap;
+    gap: 3px;
+}

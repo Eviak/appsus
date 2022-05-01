@@ -1,0 +1,33 @@
+.list-ctrl-icons {
+    gap: 20px;
+}
+
+.list-ctrl-icons > input[type=image] {
+    width: 25px;
+    height: 25px;
+    /* margin-bottom: 20px; */
+}
+
+.todo-note .form-details {
+    width: 470px;
+}
+
+.todo-item-container {
+    border-bottom: 1px solid rgba(201, 201, 201, 0.377);
+    margin-bottom: 10px;
+}
+
+.todo-item-container button {
+    width: 25px;
+    height: 18px;
+    border: 1px solid rgb(201, 201, 201);
+    border-radius: 5px;
+    margin: 5px;
+    transform: translate(40px, -4px);
+    /* transform: translateY(0px); */
+}
+
+
+.todo-note .form-details .edit-color-picker {
+    margin-bottom: 30px;
+}

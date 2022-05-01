@@ -1,70 +1,82 @@
 .note-add-input {
-    margin-top: 35px;
-    margin-bottom: 35px;
+  margin-top: 35px;
+  margin-bottom: 35px;
 }
 
 .note-add-input form {
-    box-shadow: -1px 2px 4px 1px #cbcbcb;
-    border: 1px solid rgb(197, 197, 197);
-    width: 600px;
-    border-radius: 10px;
-    padding-inline-start: 18px;
-    padding-inline-end: 18px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+  box-shadow: -1px 2px 4px 1px #cbcbcb;
+  border: 1px solid rgb(197, 197, 197);
+  width: 600px;
+  border-radius: 10px;
+  padding-inline-start: 18px;
+  padding-inline-end: 18px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .note-add-input form input:focus {
-    outline: 2px solid rgb(241, 241, 241);
+  outline: 2px solid rgb(241, 241, 241);
 }
 
-.note-add-input textarea,.note-add-input input {
-    display: inline-block;
-    width: 400px;
-    height: inherit;
-    border-radius: 5px;
-    border: none;
-    font-family: roboto, Arial, sans-serif;
-    font-size: 1.125rem;
-    color: #4C4C4C;
-    resize: none;
-    vertical-align:top;
-    background-color: transparent;    
-    
+.note-add-input textarea,
+.note-add-input input {
+  display: inline-block;
+  width: 400px;
+  height: inherit;
+  border-radius: 5px;
+  border: none;
+  font-family: roboto, Arial, sans-serif;
+  font-size: 1.125rem;
+  color: #4c4c4c;
+  resize: none;
+  vertical-align: top;
+  background-color: transparent;
 }
 
 .note-add-input textarea:focus {
-    outline: 2px solid rgb(241, 241, 241);
+  outline: 2px solid rgb(241, 241, 241);
 }
 
-.note-add-input input[name=title] {
-    margin-bottom: 25px;
+.note-add-input input[name="title"] {
+  margin-bottom: 25px;
 }
 
 .note-add-input img {
-    cursor: pointer;
-    height: 35px;
+  cursor: pointer;
+  height: 35px;
+  width: 35px;
+}
+
+.note-add-input input[type=image] {
     width: 35px;
+    height: 35px;
 }
 
-.note-add-input h4 {
-    display: inline;
+.note-add-input .add-bg-color {
+
 }
 
-.note-add-input input[type=color] {
-    width: 40px;
-    height: 40px;
+.note-add-input input[type="color"] {
+  width: 40px;
+  height: 40px;
 }
 
 .note-add-input .form-types {
     gap: 10px;
 }
 
-.form-details button[name=create-btn] {
+.note-add-input h4 {
+    margin-inline-end: 10px;
+}
+
+.note-add-input .bg-clr-container {
+    padding-bottom: 15px;
+}
+
+.form-details button[name="create-btn"] {
     width: 80px;
     background-color: rgb(236, 255, 251);
     border: 1px solid rgb(152, 184, 184);
     border-radius: 5px;
     box-shadow: -1px 2px 4px 1px #cbcbcb;
-
 }
