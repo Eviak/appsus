@@ -1,5 +1,7 @@
 .home {
     background-color: rgb(255, 255, 255);
+    background-image: url('https://cdn.discordapp.com/attachments/598242619851800576/970414221521211442/unknown.png');
+    background-repeat: no-repeat;
     box-shadow: 0px -1px 0px 1px rgba(65, 69, 73, .3);
     color: var(--main-txt-color);
     font-family: roboto;
@@ -11,7 +13,7 @@
     font-size: 2.7rem;
 }
 
-.home h1:last-child {
+.home .about-title {
     margin-bottom: 80px;
 }
 
@@ -38,47 +40,94 @@
     height: 350px;
     box-shadow: 0px 0px 2px 1px rgba(65, 69, 73, .3);
     border-radius: 12px;
-    padding:6px;
+    padding: 6px;
 }
 
-.home .app-cards .app-img{
-    width:100%;
-    height:50%;
+.home .app-cards .app-img {
+    width: 100%;
+    height: 50%;
     padding-top: 50px;
 }
 
-.home .app-cards a h2{
+.home .app-cards a h2 {
     color: #FBBC04;
     font-weight: 100;
     font-size: 2rem;
     margin-bottom: 13px;
 }
 
-.home .app-cards a:first-child h2{
+.home .app-cards a:first-child h2 {
     color: #4285F4;
 }
 
-.home .app-cards a:last-child h2{
+.home .app-cards a:last-child h2 {
     color: #34A853;
 }
 
-.home .app-cards a p{
+.home .app-cards a p {
     font-size: 1.3rem;
     font-family: roboto-light;
+}
+
+.app-img img {
+    width: 50%;
+    height: 60%;
+    object-fit: contain;
+}
+
+.app-img a img:first-child {
+    width: 50%;
+    height: 50%;
+    object-fit: contain;
 }
 
 .home .about-cards {
     margin-bottom: 80px;
 }
 
-.app-img img{
-    width:50%;
-    height:60%;
+.home .about-card {
+    margin-bottom: 80px;
+    height: 200px;
+    width: 1200px;
+    background-color: var(--read-bg);
+    align-items: center;
+    border-radius: 12px;
+    box-shadow: 0px 0px 2px 1px rgba(65, 69, 73, .3);
+}
+
+.profile-container {
+    height: 168px;
+    background-color: aquamarine;
+    margin-left: 40px;
+    border-radius: 100px;
+    min-width: 168px;
+}
+
+.about-txt {
+    margin-left: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+    gap: 10px;
+    margin-top: 65px;
+}
+
+.socials {
+    margin-right: 40px;
+    margin-left: 40px;
+    gap: 20px;
+}
+
+.socials a {
+    width: 25px;
+    height: 25px;
+}
+
+.socials a img{
     object-fit: contain;
 }
 
-.app-img a img:first-child{
-    width:50%;
-    height:50%;
-    object-fit: contain;
+.profile-container img{
+    border-radius: 100px;
 }
