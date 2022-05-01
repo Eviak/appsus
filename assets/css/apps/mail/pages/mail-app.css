@@ -1,9 +1,11 @@
-
-
 .mail-app{
     background-color: #ffff;
     width: 100%;
     font-family: roboto;
+}
+
+*:focus {
+    outline: none;
 }
 
 .interface{

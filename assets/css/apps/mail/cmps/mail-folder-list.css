@@ -12,17 +12,19 @@
     color: var(--selected-folder-txt);
     border-top-right-radius: 12px;
     border-bottom-right-radius: 12px;
+    box-shadow: -50px 0px 0px 0px var(--selected-folder-bg);
 
 }
 
-.folder-active{
+.folder-active {
     background-color: var(--selected-folder-bg);
     color: var(--selected-folder-txt);
     border-top-right-radius: 12px;
     border-bottom-right-radius: 12px;
+    box-shadow: -50px 0px 0px 0px var(--selected-folder-bg);
 }
 
-.mail-folder-list .folder.folder-active h5{
+.mail-folder-list .folder.folder-active h5 {
     display: block;
 }
 

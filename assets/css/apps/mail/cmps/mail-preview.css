@@ -21,7 +21,6 @@
 
 .mail-preview .subj-body{
     align-items: center;
-    width: 1324px;
 }
 
 .mail-preview .body{
@@ -32,6 +31,7 @@
 .mail-preview .date{
     min-width:140px;
     justify-content: flex-end;
+    margin-left: auto;
 }
 
 .read{

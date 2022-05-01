@@ -1,48 +1,66 @@
 .mail-compose {
     position: fixed;
-    bottom:0;
-    right:50px;
-    height:600px; 
-    width:600px;
-    box-shadow: 0px 8px 10px 1px rgba(0,0,0,.14),0px 3px 14px 2px rgba(0,0,0,.12),0px 5px 5px -3px rgba(0,0,0,.2);
+    bottom: 0;
+    right: 50px;
+    height: 600px;
+    width: 600px;
+    box-shadow: 0px 8px 10px 1px rgba(0, 0, 0, .14), 0px 3px 14px 2px rgba(0, 0, 0, .12), 0px 5px 5px -3px rgba(0, 0, 0, .2);
 }
 
-.compose-header{
+.compose-header {
     padding: 10px 16px;
     background-color: var(--read-subject);
     color: white;
 }
 
-.compose-header button{
+.compose-header button {
     background-color: transparent;
     border: none;
     color: white;
     font-size: 1.3rem;
 }
 
-.compose-header button:hover{
+.compose-header button:hover {
     cursor: pointer;
 }
 
-.compose-main{
+.compose-main {
     padding: 0 16px;
     font-size: 0.875rem;
     background-color: white;
 }
 
-.compose-main input{
+.compose-main input {
     border: none;
-    box-shadow:  0 -1px 0 0 rgba(100,121,143,0.122);
+    box-shadow: 0 -1px 0 0 rgba(100, 121, 143, 0.122);
     padding: 8px 0;
     font-family: roboto;
 }
 
-.compose-main input:active{
+.compose-main input:active {
     outline: none;
 }
 
-.compose-main textarea{
-    border:none;
+.compose-main textarea {
+    border: none;
     resize: none;
     font-family: roboto;
+}
+
+.compose-main button {
+    width: 100px;
+    margin-left: auto;
+    background-color: #1a73e8;
+    border-radius: 12px;
+    border: none;
+    padding: 10px;
+    color: white;
+    font-family: roboto-bold;
+}
+
+.compose-main button:hover {
+    box-shadow: 0 1px 2px 0 rgba(26, 115, 232, 0.451), 0 1px 3px 1px rgba(26, 115, 232, 0.302);
+    background-color: #297be6;
+    outline: 1px solid transparent;
+    border: none;
 }
