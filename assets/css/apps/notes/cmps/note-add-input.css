@@ -1,6 +1,7 @@
 .note-add-input {
   margin-top: 35px;
   margin-bottom: 35px;
+  transition: 0.3s ease;
 }
 
 .note-add-input form {
@@ -20,6 +21,7 @@
 
 .note-add-input textarea,
 .note-add-input input {
+  transition: 0.3s ease;
   display: inline-block;
   width: 400px;
   height: inherit;
@@ -31,6 +33,10 @@
   resize: none;
   vertical-align: top;
   background-color: transparent;
+}
+
+.note-add-input div textarea:last-of-type {
+  margin-bottom: 15px;
 }
 
 .note-add-input textarea:focus {
@@ -52,8 +58,35 @@
     height: 35px;
 }
 
-.note-add-input .add-bg-color {
+.note-add-input .add-btns-container {
+  gap: 20px;
+}
 
+.note-add-input .add-btns-container .color-picker-btn {
+  margin-inline-end: 0;
+}
+
+.note-add-input .add-btns-container .bg-clr-container {
+  border-radius: 6px;
+  padding: 5px;
+  border: 1px solid transparent;
+  transition: 0.3s;
+}
+
+.note-add-input .add-btns-container .bg-clr-container:hover {
+  transition: 0.3s;
+  background-color: #ececec54;
+  border: 1px solid rgba(204, 204, 204, 0.377);
+  border-radius: 6px;
+  /* margin: 5px; */
+}
+
+.note-add-input .add-btns-container .note-color-picker {
+  border-radius: 6px;
+  align-self: center;
+}
+
+.note-add-input .add-btns-container .note-color-picker img {
 }
 
 .note-add-input input[type="color"] {
@@ -70,7 +103,7 @@
 }
 
 .note-add-input .bg-clr-container {
-    padding-bottom: 15px;
+    /* padding-bottom: 15px; */
 }
 
 .form-details button[name="create-btn"] {

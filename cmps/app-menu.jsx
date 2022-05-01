@@ -19,7 +19,7 @@ export class AppMenu extends React.Component {
           src="./assets/img/apps-menu.png"
         />
 
-        {this.state.isShown && <div className="app-menu-modal">
+        {this.state.isShown && <div className="app-menu-modal flex">
           <Link to="mail?status=inbox">
             <input
               type="image"

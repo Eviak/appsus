@@ -14,13 +14,13 @@ export function MailPreview(props) {
 
     }
     return <section className={`mail-preview flex ${isRead}`} onClick={(ev) => onMailClicked(ev, mail.id, 'isRead')}>
-        <button className="star-button" onClick={(ev) => onMailClicked(ev, mail.id, 'isStarred')}><img src={`../../../assets/img/${isStarred}.png`} /></button>
+        <button className="star-button" onClick={(ev) => onMailClicked(ev, mail.id, 'isStarred')}><img src={`assets/img/${isStarred}.png`} /></button>
         <h3 className="sender-name">{mail.fullName}</h3>
         <div className="subj-body flex">
             <h3 className="subject">{mail.subject}</h3>
             <p className="body"> - {mail.body}</p>
         </div>
         {getTime()}
-        <button className="trash-button" onClick={(ev) => onMailClicked(ev, mail.id, 'isTrash')}><img src={`../../../assets/img/trash-grey.png`} /></button>
+        <button className="trash-button" onClick={(ev) => onMailClicked(ev, mail.id, 'isTrash')}><img src={`assets/img/trash-grey.png`} /></button>
     </section>
 }

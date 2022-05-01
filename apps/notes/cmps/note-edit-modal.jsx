@@ -104,11 +104,9 @@ export class NoteEditModal extends React.Component {
   }
 
   setTextRowsCount = (ev) => {
-    oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'
-    
-
+    oninput =
+      'this.style.height = "";this.style.height = this.scrollHeight + "px"'
   }
-
 
   render() {
     const { isShown, showHideModal, onNoteDelete } = this.props
@@ -163,7 +161,6 @@ export class NoteEditModal extends React.Component {
             ></textarea>
 
             <div className="edit-color-picker flex align-center">
-              <h4>Background color:</h4>
               <NoteColorPicker changeBgClr={changeBgClr} />
             </div>
 
@@ -226,7 +223,6 @@ export class NoteEditModal extends React.Component {
                 onChange={(ev) => onChange(ev)}
               ></textarea>
 
-              <h4>Background color:</h4>
               <NoteColorPicker changeBgClr={changeBgClr} />
 
               <div className="modal-icons flex justify-center">
@@ -280,6 +276,7 @@ export class NoteEditModal extends React.Component {
             ></textarea>
             <h3>Url:</h3>
             <textarea
+              style={txtInputStyle}
               value={note.info.url}
               name="url"
               onChange={(ev) => onChange(ev)}
@@ -291,7 +288,6 @@ export class NoteEditModal extends React.Component {
             ></iframe>
 
             <div className="edit-color-picker flex align-center">
-              <h4>Background color:</h4>
               <NoteColorPicker changeBgClr={changeBgClr} />
             </div>
 
@@ -301,12 +297,6 @@ export class NoteEditModal extends React.Component {
                 src="apps/notes/img/icons/duplicate.png"
                 alt="Duplicate"
                 onClick={() => duplicateNote(note)}
-              />
-              <input
-                type="image"
-                src="apps/notes/img/icons/add.png"
-                alt="Add"
-                onClick={addTodo}
               />
               <input
                 type="image"
@@ -368,7 +358,6 @@ export class NoteEditModal extends React.Component {
             })}
 
             <div className="edit-color-picker flex align-center">
-              <h4>Background color:</h4>
               <NoteColorPicker changeBgClr={changeBgClr} />
             </div>
 

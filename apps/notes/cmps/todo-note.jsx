@@ -124,7 +124,6 @@ export class TodoNote extends React.Component {
             ></textarea>
 
             <div className="edit-color-picker flex align-center">
-              <h4>Background color:</h4>
               <NoteColorPicker changeBgClr={this.props.changeBgClr} />
             </div>
 

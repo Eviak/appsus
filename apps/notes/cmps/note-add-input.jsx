@@ -161,14 +161,16 @@ export class NoteAddInput extends React.Component {
                   style={{ lineHeight: "1.3333em" }}
                 />
               )}
-              <div className="bg-clr-container flex align-center">
-                <h4>Background Color:</h4>
-
-                <NoteColorPicker changeBgClr={changeBgClr} />
-              </div>
+              
+              <div className="add-btns-container flex">
               <button type="submit" name="create-btn">
                 Create
               </button>
+              <div className="bg-clr-container flex align-center">
+                <NoteColorPicker changeBgClr={changeBgClr} />
+              </div>
+              </div>
+
             </div>
             <div className="form-types flex-col justify-center">
               <img //Icon buttons

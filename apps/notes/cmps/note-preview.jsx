@@ -13,12 +13,16 @@ export class NotePreview extends React.Component {
     eventBusService.emit("open-note-modal", { editedNote })
   }
 
+  duplicateNote(note) {
+    noteService.duplicateNote(note).then(this.props.loadNotes())
+  }
+
   render() {
     const NOTE_TYPES = ["note-txt", "note-img", "note-vid", "note-todos"]
     const { note, onColorChange } = this.props
-    const { getVidId } = this
+    const { getVidId, duplicateNote } = this
     const previewStyle = {
-        backgroundColor: note.info.bgClr,
+      backgroundColor: note.info.bgClr,
     }
 
     return NOTE_TYPES.map((noteType) => {
@@ -30,9 +34,22 @@ export class NotePreview extends React.Component {
             key={note.id}
             className={`note-preview ${noteType} flex-col`}
           >
-            <DynamicCmp
-              prms={{ note, onColorChange, getVidId }}
-            />
+            <DynamicCmp prms={{ note, onColorChange, getVidId }} />
+
+            <div className="preview-icons flex">
+              <input
+                type="image"
+                src="apps/notes/img/icons/duplicate.png"
+                alt="Duplicate"
+                onClick={() => duplicateNote(note)}
+              />
+              <input
+                type="image"
+                src="apps/notes/img/icons/delete.png"
+                alt="Delete"
+                onClick={() => onNoteDelete(note.id)}
+              />
+            </div>
           </div>
         )
       }
@@ -72,8 +89,8 @@ const DynamicCmp = ({ prms }) => {
         <React.Fragment>
           <h2 style={dynPreviewStyle}>{info.title}</h2>
           <iframe
-            width="240"
-            height="180"
+            width="270"
+            height="202.5"
             src={`https://www.youtube.com/embed/${info.ytVidId}`}
           ></iframe>
         </React.Fragment>

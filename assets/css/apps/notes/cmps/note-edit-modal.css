@@ -66,6 +66,10 @@
     margin-bottom: 10px;
 }
 
+.note-edit-modal iframe {
+    border: none;
+}
+
 .note-edit-modal input[type=color] {
     width: 30px;
     height: 30px;
@@ -91,4 +95,8 @@
 
 .note-edit-modal .modal-icons {
     gap: 14px;
+}
+
+.video-modal {
+    align-items: center;
 }
