@@ -30,3 +30,11 @@
 .main-mail{
     width:90%;
 }
+
+#chk {
+    display:none;
+}
+
+.dark-label {
+    display:none;
+}

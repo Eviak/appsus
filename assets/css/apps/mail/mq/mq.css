@@ -68,24 +68,51 @@
         flex-direction: column;
     }
 
-    .interface {
+    .toggle-menu-button {
+        font-size: 1.4rem;
+        margin-left: 5px;
+    }
+
+    #chk:checked+.interface {
         display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 20px
+    }
+
+    .dark-label {
+        display: block;
+        width: 30vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.78);
+        position: fixed;
+        left: 70vw;
+    }
+
+    .interface {
+        display: none;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 20px;
+        flex-direction: column;
+        margin-right: auto;
+        position: fixed;
+        z-index: 1;
+        background: #9f9494;
+        width: 70vw;
+        height: 100vh;
     }
 
     .interface button {
-        margin-bottom: 5px;
-        padding: 10px 6px;
+        padding-left: 19px;
+        font-size: 0.9rem;
+        padding-right: 13px;
     }
 
     .mail-folder-list {
-        flex-direction: row;
+        width: 100%
     }
 
     .mail-folder-list .folder {
-        padding: 5px 14px;
+        padding: 10px 14px;
+        font-size: 1.2rem
     }
 
     .mail-folder-list .folder:hover {
@@ -157,12 +184,24 @@
         margin-right: 0;
     }
 
+    .mail-filter {
+        margin-right: 2px;
+        align-items: center;
+    }
+
     .logo {
         font-size: 0.8rem;
+        margin-right: 5px;
     }
 
     .logo span {
         font-size: 1.2rem;
+    }
+
+    .mail-filter .search-bar {
+        height: 30px;
+        flex-grow: 0;
+        width: 161px;
     }
 }
 

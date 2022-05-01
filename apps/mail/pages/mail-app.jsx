@@ -14,7 +14,8 @@ export class MailApp extends React.Component {
     state = {
         mails: [],
         criteria: "",
-        compose: false
+        compose: false,
+        menu:false
     }
 
 
@@ -46,17 +47,17 @@ export class MailApp extends React.Component {
     }
 
     toggleCompose = (compose) => {
-        this.setState({ compose })
+        this.setState({ compose, menu:false })
     }
 
     clearCriteria = () => {
-        this.setState((prevState) => ({ ...prevState, criteria: '' }), () => this.loadMails())
+        this.setState((prevState) => ({ ...prevState, criteria: '',menu:false }), () => this.loadMails())
     }
 
     get statusToFilter() {
         const { mails } = this.state
         const urlSrcPrm = new URLSearchParams(this.props.location.search)
-        const status = urlSrcPrm.get('status') 
+        const status = urlSrcPrm.get('status')
         return mails.filter(mail => {
             return status === 'inbox' && mail.to === 'puki@lala.com' && !mail.isTrash ||
                 status === 'sent' && mail.to !== 'puki@lala.com' && !mail.isTrash ||
@@ -69,15 +70,19 @@ export class MailApp extends React.Component {
         const { mails } = this.state
         if (!mails.length) return
         const length = {}
-        const folders = ['inbox','sent','starred','trash']
+        const folders = ['inbox', 'sent', 'starred', 'trash']
         folders.map(folder => length[folder] = mails.filter(mail => {
             return folder === 'inbox' && mail.to === 'puki@lala.com' && !mail.isTrash ||
                 folder === 'sent' && mail.to !== 'puki@lala.com' && !mail.isTrash ||
                 folder === 'starred' && mail.isStarred && !mail.isTrash ||
                 folder === 'trash' && mail.isTrash
         }).length)
-        this.setState((prevState) => ({...prevState,length}))
+        this.setState((prevState) => ({ ...prevState, length }))
 
+    }
+
+    toggleMenu = () => {
+        this.setState((prevState) => ({menu:!prevState.menu}))
     }
 
 
@@ -85,9 +90,12 @@ export class MailApp extends React.Component {
         const { mails, compose } = this.state
         const { pathname, search } = this.props.location
         return <section className="mail-app flex">
+            <label class="toggle-menu-button" onClick={this.toggleMenu}>☰</label>
+            <input id="chk" type="checkbox" checked={this.state.menu} />
             <section className="interface">
-                <button onClick={() => this.toggleCompose(true)}>Compose</button>
+            <button onClick={() => this.toggleCompose(true)}>Compose</button>
                 <MailFolderList clearCriteria={this.clearCriteria} length={this.state.length} />
+                <label className="dark-label" onClick={this.toggleMenu}></label>
             </section>
             <section className="main-mail">
                 {!mails.length && <h2 className="search-results">No Results</h2>}
