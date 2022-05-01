@@ -1,16 +1,28 @@
 import { MailFilter } from "../apps/mail/cmps/mail-filter.jsx"
+import { AppMenu } from "./app-menu.jsx"
 
 const { NavLink, withRouter } = ReactRouterDOM
-function _AppHeader(props) {
-    return <header className="app-header">
-        <h3 className="logo"><span>M</span>.B.<span>N</span></h3>
 
-        {props.location.pathname.includes('/mail') && <MailFilter />}
+class _AppHeader extends React.Component {
+  render() {
+      console.log(this.props);
+    return (
+      <header className="app-header">
+        <h3 className="logo">
+          <span>M</span>.B.<span>N</span>
+        </h3>
+
+        {this.props.location.pathname.includes("/mail") && <MailFilter />}
 
         <nav>
-            <NavLink to="/" exact>Home</NavLink>
+            <AppMenu />
+          <NavLink to="/" exact>
+            Home
+          </NavLink>
         </nav>
-    </header>
+      </header>
+    )
+  }
 }
 
-export const AppHeader = withRouter(_AppHeader)
+export const AppHeader = withRouter(_AppHeader);

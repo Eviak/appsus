@@ -6,9 +6,12 @@ export class NoteEditModal extends React.Component {
   state = {
     note: null,
     render: 0,
+    textRowsCount: null,
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.setTextRowsCount()
+  }
 
   componentWillUnmount() {}
 
@@ -100,10 +103,17 @@ export class NoteEditModal extends React.Component {
     }))
   }
 
+  setTextRowsCount = (ev) => {
+    oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'
+    
+
+  }
+
+
   render() {
     const { isShown, showHideModal, onNoteDelete } = this.props
     const { onChange, duplicateNote, removeTodo, addTodo, changeBgClr } = this
-    const { note } = this.state
+    const { note, textRowsCount } = this.state
 
     if (!isShown) return <React.Fragment></React.Fragment>
 
@@ -141,6 +151,8 @@ export class NoteEditModal extends React.Component {
               style={txtInputStyle}
               value={note.info.title}
               name="title"
+              rows={textRowsCount}
+              // oninput={{this.style.height = "";this.style.height = this.scrollHeight + "px"}}
               onChange={(ev) => onChange(ev)}
             ></textarea>
             <textarea

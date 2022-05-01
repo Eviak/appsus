@@ -20,152 +20,36 @@ const gNotes = [{
         type: "note-txt",
         isPinned: true,
         info: {
-            txt: "Fullstack Me Baby!",
-            title: "Fullstack text note",
+            txt: "Grandma phone number",
+            title: "059-4571356",
         }
     },
     {
         id: "n102",
-        type: "note-txt",
+        type: "note-img",
         isPinned: true,
         info: {
-            txt: "Fullstack Me Baby!",
-            title: "Fullstack text note",
+            txt: "My trip to the moon",
+            title: "Here you can see me casually drinking a beer on the moon.",
+            url: 'https://m.media-amazon.com/images/I/81zm9tKLsxL._AC_SX679_.jpg'
         }
     },
     {
         id: "n103",
-        type: "note-txt",
+        type: "note-todo",
         isPinned: true,
         info: {
-            txt: "Fullstack Me Baby!",
-            title: "Fullstack text note",
+            txt: "",
+            title: "Grocery list",
+            todos: [
+                {
+                    txt: 'Tomatoes',
+                    
+                }
+            ]
         }
     },
-    {
-        id: "n104",
-        type: "note-img",
-        info: {
-            url: "https://cdn.webshopapp.com/shops/77844/files/349917232/image.jpg",
-            title: "Bobi and Me",
-            txt: "My image text BLah my image text BLah my image text BLah my image text BLah my image text BLah my image text BLah my image text BLah "
-        },
-        style: { backgroundColor: "#00d" }
-    },
-    {
-        id: "n105",
-        type: "note-img",
-        info: {
-            url: "https://cdn.webshopapp.com/shops/77844/files/349917232/image.jpg",
-            title: "Bobi and Me",
-            txt: "My image text BLah my image text BLah my image text BLah my image text BLah my image text BLah my image text BLah my image text BLah "
-        },
-        style: { backgroundColor: "#00d" }
-    },
-    {
-        id: "n106",
-        type: "note-img",
-        info: {
-            url: "https://cdn.webshopapp.com/shops/77844/files/349917232/image.jpg",
-            title: "Bobi and Me",
-            txt: "My image text BLah my image text BLah my image text BLah my image text BLah my image text BLah my image text BLah my image text BLah "
-        },
-        style: { backgroundColor: "#00d" }
-    },
-    {
-        id: "n107",
-        type: "note-img",
-        info: {
-            url: "https://cdn.webshopapp.com/shops/77844/files/349917232/image.jpg",
-            title: "Bobi and Me",
-            txt: "My image text BLah my image text BLah my image text BLah my image text BLah my image text BLah my image text BLah my image text BLah "
-        },
-        style: { backgroundColor: "#00d" }
-    },
-    {
-        id: "n108",
-        type: "note-txt",
-        isPinned: true,
-        info: {
-            txt: "Fullstack Me Baby!",
-            title: "Fullstack text note",
-        }
-    },
-    {
-        id: "n109",
-        type: "note-txt",
-        isPinned: true,
-        info: {
-            txt: "Fullstack Me Baby!",
-            title: "Fullstack text note",
-        }
-    },
-    {
-        id: "n110",
-        type: "note-txt",
-        isPinned: true,
-        info: {
-            txt: "Fullstack Me Baby!",
-            title: "Fullstack text note",
-        }
-    },
-    {
-        id: "n111",
-        type: "note-img",
-        info: {
-            url: "https://cdn.webshopapp.com/shops/77844/files/349917232/image.jpg",
-            title: "Bobi and Me",
-            txt: "My image text BLah my image text BLah my image text BLah my image text BLah my image text BLah my image text BLah my image text BLah "
-        },
-        style: { backgroundColor: "#00d" }
-    },
-    {
-        id: "n112",
-        type: "note-img",
-        info: {
-            url: "https://cdn.webshopapp.com/shops/77844/files/349917232/image.jpg",
-            title: "Bobi and Me",
-            txt: "My image text BLah my image text BLah my image text BLah my image text BLah my image text BLah my image text BLah my image text BLah "
-        },
-        style: { backgroundColor: "#00d" }
-    },
-    {
-        id: "n113",
-        type: "note-img",
-        info: {
-            url: "https://cdn.webshopapp.com/shops/77844/files/349917232/image.jpg",
-            title: "Bobi and Me",
-            txt: "My image text BLah my image text BLah my image text BLah my image text BLah my image text BLah my image text BLah my image text BLah "
-        },
-        style: { backgroundColor: "#00d" }
-    },
-    {
-        id: "n114",
-        type: "note-img",
-        info: {
-            url: "https://cdn.webshopapp.com/shops/77844/files/349917232/image.jpg",
-            title: "Bobi and Me",
-            txt: "My image text BLah my image text BLah my image text BLah my image text BLah my image text BLah my image text BLah my image text BLah "
-        },
-        style: { backgroundColor: "#00d" }
-    },
-    {
-        id: "n115",
-        type: "note-todos",
-        info: {
-            title: "Todos:",
-            label: "Get my stuff together",
-            todos: [{
-                txt: "Driving liscence",
-                doneAt: null,
-                todoId: 1,
-            }, {
-                txt: "Coding power",
-                doneAt: 187111111,
-                todoId: 2,
-            }]
-        }
-    }
+    
 ]
 
 function query(filterBy) {
@@ -253,31 +137,6 @@ function _createNote({ type, title, txt, txtColor = 'red', url = null, bgClr, is
             todos
         },
     }
-}
-
-// get statusToFilter() {
-//     const { mails } = this.state
-//     const urlSrcPrm = new URLSearchParams(this.props.location.search)
-//     const status = urlSrcPrm.get('status')
-//     return mails.filter(mail => {
-//         return status === 'inbox' && mail.to === 'puki@lala.com' && !mail.isTrash ||
-//             status === 'sent' && mail.to !== 'puki@lala.com' && !mail.isTrash ||
-//             status === 'starred' && mail.isStarred && !mail.isTrash ||
-//             status === 'trash' && mail.isTrash
-//     })
-// }
-
-function _createRndTextNote() {
-    const title = utilService.makeId()
-    const txt = utilService.makeId()
-    const note = {
-        title,
-        txt,
-        txtColor: 'blue'
-    }
-
-    console.log(note);
-    addNewNote(note)
 }
 
 function _saveToStorage(notes) {

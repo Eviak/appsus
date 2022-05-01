@@ -46,6 +46,7 @@ export class NoteAddInput extends React.Component {
     const { newNote } = this
     const stateKeys = Object.keys(this.state)
     const key = stateKeys.find((stateKey) => this.state[stateKey])
+    console.log('key:(note-vid)', key);
     switch (key) {
       case "isImgInputShown":
         console.log("did it")
@@ -55,19 +56,45 @@ export class NoteAddInput extends React.Component {
       case "isVidInputShown":
         newNote.type = "note-vid"
         newNote.ytVidId = this.getVidId(newNote.url)
+        console.log('newNote.ytVidId:',newNote.ytVidId);
         break
 
       case "isListInputShown":
         newNote.type = "note-todos"
         break
     }
+
+    this.newNote = {
+      type: "note-txt",
+      title: "",
+      txt: "",
+      txtColor: "#202124",
+      bgColor: "#fff",
+      url: null,
+      ytVidId: null,
+      todos: {
+        todoId: null,
+        txt: null,
+        doneAt: null,
+      },
+    }
+
+    this.setState({
+      selected: false,
+      isImgInputShown: false,
+      isVidInputShown: false,
+      isListInputShown: false,
+      txtColor: "#202124",
+      bgClr: "#FFF",
+    })
     noteService.addNewNote(newNote).then(this.props.loadNotes())
   }
 
   getVidId = (url) => {
     const relativeStartIdx = url.indexOf("watch?v=")
-    const relativeEndIdx = url.indexOf("&") === -1 ? null : url.indexOf("&")
+    const relativeEndIdx = url.indexOf("&") === -1 ? url.length : url.indexOf("&")
     const vidId = url.slice(relativeStartIdx + 8, relativeEndIdx)
+    console.log('vidId',vidId);
     return vidId
   }
 
@@ -81,26 +108,16 @@ export class NoteAddInput extends React.Component {
     this.setState({ bgClr: color })
   }
 
-
   render() {
     const inputStyle = {
       color: this.state.txtColor,
       backgroundColor: this.state.bgClr,
     }
 
-    const {
-      isImgInputShown,
-      isVidInputShown,
-      isListInputShown,
-    } = this.state
+    const { isImgInputShown, isVidInputShown, isListInputShown } = this.state
 
-    const {
-      handleChange,
-      onNoteAdd,
-      newNote,
-      changeBgClr,
-      onIconBtnClick,
-    } = this
+    const { handleChange, onNoteAdd, newNote, changeBgClr, onIconBtnClick } =
+      this
 
     return (
       <section className="note-add-input flex align-center" style={inputStyle}>
@@ -149,7 +166,9 @@ export class NoteAddInput extends React.Component {
 
                 <NoteColorPicker changeBgClr={changeBgClr} />
               </div>
-              <button type="submit" name="create-btn">Create</button>
+              <button type="submit" name="create-btn">
+                Create
+              </button>
             </div>
             <div className="form-types flex-col justify-center">
               <img //Icon buttons
