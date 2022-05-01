@@ -29,6 +29,11 @@
 }
 
 @font-face {
+    font-family: roboto-light;
+    src: url('../../fonts/Roboto/Roboto-Light.ttf')
+}
+
+@font-face {
     font-family: adhaya;
     src: url('../../fonts/Abhaya/AbhayaLibre-Regular.ttf')
 }
@@ -71,4 +76,9 @@
 @font-face {
     font-family: sitka-small;
     src: url('../../fonts/SitkaSmall-01.ttf');
+}
+
+@font-face {
+    font-family: sans-modern;
+    src: url('../../fonts/OpenSans/ModernSans-Light.otf') format("opentype")
 }
