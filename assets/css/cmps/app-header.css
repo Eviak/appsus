@@ -1,9 +1,12 @@
 .app-header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
     background-color: rgb(146, 148, 120);
+}
+
+.app-header nav{
+    margin-left: auto;
 }
 
 .app-header nav a {
@@ -14,19 +17,52 @@
     margin-inline-end: 10px;
 }
 
+.active {
+    color: rgb(255, 255, 255);
+}
+
 .logo {
     color: white;
     font-size: 2rem;
     font-family: safira;
     background-color: rgba(43, 43, 43, 0.6);
-    padding: 10px
+    padding: 10px;
+    margin-right: 30px;
 }
 
-.logo span{
+.logo span {
     font-family: adhaya;
     font-size: 3rem;
 }
 
-.active {
-    color: rgb(255, 255, 255);
+.mail-filter {
+    margin-right: 100px;
+    height: 50px;
+    display: flex;
+    max-width: 600px;
+    width: 100%;
+}
+
+.mail-filter form {
+    display: flex;
+    width: 100%;
+}
+
+.mail-filter button {
+    display: none;
+}
+
+.mail-filter .search-bar {
+    height: 100%;
+    flex-grow: 1;
+    border-radius: 12px;
+    border: 0;
+    padding-left: 20px;
+    background-color: var(--read-bg);
+    font-family: roboto;
+}
+
+.mail-filter .search-bar:focus{
+    background-color: white;
+    box-shadow: 0 1px 1px 0 rgba(65,69,73,.3),0 1px 3px 1px rgba(65,69,73,.15);
 }
