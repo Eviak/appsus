@@ -90,12 +90,12 @@ export class MailApp extends React.Component {
         const { mails, compose , menu } = this.state
         const { pathname, search } = this.props.location
         return <section className="mail-app flex">
-            <label class="toggle-menu-button" onClick={this.toggleMenu}>☰</label>
+            <label className="toggle-menu-button" onClick={this.toggleMenu}>☰</label>
             <input id="chk" type="checkbox" checked={this.state.menu} />
             <section className={`interface ${menu && 'slide-right'}`}>
             <button onClick={() => this.toggleCompose(true)}>Compose</button>
                 <MailFolderList clearCriteria={this.clearCriteria} length={this.state.length} />
-                <label className="dark-label" onClick={this.toggleMenu}></label>
+                <label className={`dark-label ${menu && 'fade-in'}`} onClick={this.toggleMenu}></label>
             </section>
             <section className="main-mail">
                 {!mails.length && <h2 className="search-results">No Results</h2>}
