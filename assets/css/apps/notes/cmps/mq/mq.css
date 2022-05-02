@@ -34,27 +34,52 @@
 }
 
 @media (max-width: 620px) {
+  .note-app{
+    max-width: 100%;
+    margin: auto;
+  }
+
   .note-list {
     columns: 240px 1;
-    width: 100%;
+    width: 90%;
     display: flex;
     flex-direction: column;
+    gap: 0;
   }
 
   .note-preview {
-      width: 97vw;
+      width: 100%;
   }
 
   .note-add-input form {
-      width: 97vw;
+      width: 90vw;
   }
 
   .note-add-input textarea, .note-add-input input {
-      width: 60vw;
+      width: 100%;
   }
 
-  .note-add-input .form-types {
-    flex-direction: row;
-    align-items: flex-end;
+  .note-edit-modal{
+    width: 98%;
   }
+
+  .note-edit-modal text-area {
+    width: 90%;
+  }
+
+  .todo-note .form-types {
+    justify-content: flex-start;
+  }
+
+  .preview-vid-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  
+.note-preview iframe {
+  transform: translateX(0);
+}
+
 }

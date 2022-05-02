@@ -23,21 +23,21 @@ export class AppMenu extends React.Component {
           <Link to="mail?status=inbox">
             <input
               type="image"
-              src="./assets/img/mail-icon.png"
+              src="./assets/img/mail.png"
               alt="Mail app"
             />
           </Link>
           <Link to="books">
             <input
               type="image"
-              src="./assets/img/books-icon.png"
+              src="./assets/img/books.png"
               alt="Books app"
             />
           </Link>
           <Link to="notes">
             <input
               type="image"
-              src="./assets/img/notes-icon.png"
+              src="./assets/img/notes.png"
               alt="Notes app"
             />
           </Link>

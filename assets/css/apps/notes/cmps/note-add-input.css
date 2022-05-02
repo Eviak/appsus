@@ -78,15 +78,11 @@
   background-color: #ececec54;
   border: 1px solid rgba(204, 204, 204, 0.377);
   border-radius: 6px;
-  /* margin: 5px; */
 }
 
 .note-add-input .add-btns-container .note-color-picker {
   border-radius: 6px;
   align-self: center;
-}
-
-.note-add-input .add-btns-container .note-color-picker img {
 }
 
 .note-add-input input[type="color"] {
@@ -100,10 +96,6 @@
 
 .note-add-input h4 {
     margin-inline-end: 10px;
-}
-
-.note-add-input .bg-clr-container {
-    /* padding-bottom: 15px; */
 }
 
 .form-details button[name="create-btn"] {

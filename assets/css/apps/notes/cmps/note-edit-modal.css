@@ -5,8 +5,10 @@
     background-color: white;
     border: 1px solid rgb(219, 219, 219);
     max-height: 800px;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
+    z-index: 5;
+    transition: 0.8s;
 }
 
 .note-edit-modal > * {
@@ -21,6 +23,10 @@
 .note-edit-modal .img-modal-content {
     padding: 10px 15px 25px 15px;
     
+}
+
+.note-edit-modal .edit-vid-link-btn {
+    padding: 0;
 }
 
 .note-edit-modal textarea {
@@ -64,6 +70,7 @@
 .note-edit-modal .modal-todo {
     border-bottom: 1px solid rgba(197, 197, 197, 0.233);
     margin-bottom: 10px;
+    padding:0px 0px;
 }
 
 .note-edit-modal iframe {
@@ -84,7 +91,6 @@
     border: 1px solid rgb(201, 201, 201);
     border-radius: 5px;
     margin: 5px;
-    transform: translateX(13px);
 }
 
 .note-edit-modal hr {
@@ -99,4 +105,14 @@
 
 .video-modal {
     align-items: center;
+}
+
+.modal-shadowed-screen {
+    position: fixed;
+    z-index: -0;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.349);
 }

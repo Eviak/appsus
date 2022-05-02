@@ -2,3 +2,8 @@
     padding-inline-end: 20px;
     margin-bottom: 30px;
 }
+
+.note-filter h4 {
+    padding-inline-end: 25px;
+    transform: translateY(-1px);
+}

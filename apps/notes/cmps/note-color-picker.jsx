@@ -31,7 +31,7 @@ export class NoteColorPicker extends React.Component {
           onClick={colorPickerToggle}
         />
         {this.state.isShown && (
-          <div className="color-picker-colors flex">
+          <div className='color-picker-colors flex'>
             {clrs.map((clr) => {
               return (
                 <div

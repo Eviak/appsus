@@ -16,15 +16,12 @@ class _AppHeader extends React.Component {
 
                 {this.props.location.pathname.includes("/mail") && <MailFilter />}
 
-                <nav>
-                    <AppMenu />
-                    <NavLink to="/" exact>
-                        Home
-                    </NavLink>
-                </nav>
-            </header>
-        )
-    }
+        <nav>
+          <AppMenu />
+        </nav>
+      </header>
+    )
+  }
 }
 
-export const AppHeader = withRouter(_AppHeader);
+export const AppHeader = withRouter(_AppHeader)
