@@ -127,14 +127,14 @@ export class TodoNote extends React.Component {
               <input
                 className="add-todo-btn"
                 type="image"
-                src="/apps/notes/img/icons/add.png"
+                src="apps/notes/img/icons/add.png"
                 alt="Add"
                 onClick={addTodo}
               />
               <input
                 className="add-todo-btn"
                 type="image"
-                src="/apps/notes/img/icons/save.png"
+                src="git apps/notes/img/icons/save.png"
                 alt="Save"
                 onClick={saveTodo}
               />
