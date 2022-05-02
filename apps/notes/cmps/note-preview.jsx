@@ -19,7 +19,7 @@ export class NotePreview extends React.Component {
 
   render() {
     const NOTE_TYPES = ["note-txt", "note-img", "note-vid", "note-todos"]
-    const { note, onColorChange } = this.props
+    const { note, onColorChange, onNoteDelete } = this.props
     const { getVidId, duplicateNote } = this
     const previewStyle = {
       backgroundColor: note.info.bgClr,
@@ -88,11 +88,11 @@ const DynamicCmp = ({ prms }) => {
       return (
         <React.Fragment>
           <h2 style={dynPreviewStyle}>{info.title}</h2>
-          <iframe
-            width="270"
-            height="202.5"
-            src={`https://www.youtube.com/embed/${info.ytVidId}`}
-          ></iframe>
+          <div className="preview-vid-wrap">
+            <iframe
+              src={`https://www.youtube.com/embed/${info.ytVidId}`}
+            ></iframe>
+          </div>
         </React.Fragment>
       )
 

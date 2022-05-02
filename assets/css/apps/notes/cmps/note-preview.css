@@ -19,8 +19,16 @@
 
 .note-preview iframe {
   border: none;
+  /* width:100%;
+  height: 56.25%; */
   margin-bottom: 15px;
   transform: translateX(-16px);
+}
+
+.note-preview .preview-vid-wrap {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
 }
 
 .note-preview h2 {
@@ -28,6 +36,8 @@
   margin-top: 12px;
   margin-bottom: 10px;
 }
+
+
 
 .note-preview .todo-content {
   padding: 0 16px;
@@ -53,4 +63,8 @@
 .note-preview .preview-icons {
   gap: 15px;
   justify-content: flex-end;
+}
+
+.note-preview p {
+  margin-bottom: 20px;
 }

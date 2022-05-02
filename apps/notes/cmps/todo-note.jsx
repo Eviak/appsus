@@ -107,7 +107,6 @@ export class TodoNote extends React.Component {
 
     const todoStyle = {
       color: this.state.txtColor,
-      backgroundColor: this.state.bgClr,
     }
 
     return (
@@ -123,9 +122,6 @@ export class TodoNote extends React.Component {
               style={todoStyle}
             ></textarea>
 
-            <div className="edit-color-picker flex align-center">
-              <NoteColorPicker changeBgClr={this.props.changeBgClr} />
-            </div>
 
             <div className="list-ctrl-icons flex">
               <input
@@ -142,6 +138,9 @@ export class TodoNote extends React.Component {
                 alt="Save"
                 onClick={saveTodo}
               />
+            <div className="edit-color-picker flex align-center">
+              <NoteColorPicker changeBgClr={this.props.changeBgClr} />
+            </div>
             </div>
 
             {todos.map((todo) => {
@@ -169,6 +168,7 @@ export class TodoNote extends React.Component {
               )
             })}
           </div>
+          
           <div className="form-types flex-col justify-center">
             <img //Icon buttons
               onClick={() => this.props.onIconBtnClick("Img")}

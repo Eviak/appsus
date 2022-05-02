@@ -7,6 +7,7 @@ export class NoteEditModal extends React.Component {
     note: null,
     render: 0,
     textRowsCount: null,
+    isVidLinkShown: false,
   }
 
   componentDidMount() {
@@ -108,10 +109,21 @@ export class NoteEditModal extends React.Component {
       'this.style.height = "";this.style.height = this.scrollHeight + "px"'
   }
 
+  toggleVidLink = () => {
+    this.setState({ isVidLinkShown: !this.state.isVidLinkShown })
+  }
+
   render() {
     const { isShown, showHideModal, onNoteDelete } = this.props
-    const { onChange, duplicateNote, removeTodo, addTodo, changeBgClr } = this
-    const { note, textRowsCount } = this.state
+    const {
+      onChange,
+      duplicateNote,
+      removeTodo,
+      addTodo,
+      changeBgClr,
+      toggleVidLink,
+    } = this
+    const { note, textRowsCount, isVidLinkShown } = this.state
 
     if (!isShown) return <React.Fragment></React.Fragment>
 
@@ -133,87 +145,22 @@ export class NoteEditModal extends React.Component {
     switch (note.type) {
       case "note-txt":
         return (
-          <form
-            style={bgClrStyle}
-            onSubmit={this.onNoteEditSave}
-            className="note-edit-modal flex-col"
-          >
-            <input
-              className="exit-modal-btn"
-              type="image"
-              src="apps/notes/img/icons/exit.png"
-              alt="Exit"
+          <React.Fragment>
+            <div
+              className="modal-shadowed-screen"
               onClick={() => showHideModal(false)}
-            />
-            <textarea
-              style={txtInputStyle}
-              value={note.info.title}
-              name="title"
-              rows={textRowsCount}
-              // oninput={{this.style.height = "";this.style.height = this.scrollHeight + "px"}}
-              onChange={(ev) => onChange(ev)}
-            ></textarea>
-            <textarea
-              style={txtInputStyle}
-              value={note.info.txt}
-              name="txt"
-              onChange={(ev) => onChange(ev)}
-            ></textarea>
-
-            <div className="edit-color-picker flex align-center">
-              <NoteColorPicker changeBgClr={changeBgClr} />
-            </div>
-
-            <div className="modal-icons flex justify-center">
-              <input
-                type="image"
-                src="apps/notes/img/icons/duplicate.png"
-                alt="Duplicate"
-                onClick={() => duplicateNote(note)}
-              />
-              <input
-                type="image"
-                src="apps/notes/img/icons/add.png"
-                alt="Add"
-                onClick={addTodo}
-              />
-              <input
-                type="image"
-                src="apps/notes/img/icons/save.png"
-                alt="Submit"
-              />
-              <input
-                type="image"
-                src="apps/notes/img/icons/delete.png"
-                alt="Delete"
-                onClick={() => onNoteDelete(note.id)}
-              />
-            </div>
-          </form>
-        )
-
-      case "note-img":
-        return (
-          <form
-            style={bgClrStyle}
-            onSubmit={this.onNoteEditSave}
-            className="note-edit-modal img-modal flex-col"
-          >
-            <input
-              className="exit-modal-btn"
-              type="image"
-              src="apps/notes/img/icons/exit.png"
-              alt="Exit"
-              onClick={() => showHideModal(false)}
-            />
-
-            <img src={note.info.url} alt="Note image" class="modal-img" />
-
-            <div className="img-modal-content flex-col">
+            ></div>
+            <form
+              style={bgClrStyle}
+              onSubmit={this.onNoteEditSave}
+              className="note-edit-modal flex-col"
+            >
               <textarea
                 style={txtInputStyle}
                 value={note.info.title}
                 name="title"
+                rows={textRowsCount}
+                // oninput={{this.style.height = "";this.style.height = this.scrollHeight + "px"}}
                 onChange={(ev) => onChange(ev)}
               ></textarea>
               <textarea
@@ -223,7 +170,201 @@ export class NoteEditModal extends React.Component {
                 onChange={(ev) => onChange(ev)}
               ></textarea>
 
-              <NoteColorPicker changeBgClr={changeBgClr} />
+              <div className="edit-color-picker flex align-center">
+                <NoteColorPicker changeBgClr={changeBgClr} />
+              </div>
+
+              <div className="modal-icons flex justify-center">
+                <input
+                  type="image"
+                  src="apps/notes/img/icons/duplicate.png"
+                  alt="Duplicate"
+                  onClick={() => duplicateNote(note)}
+                />
+                <input
+                  type="image"
+                  src="apps/notes/img/icons/save.png"
+                  alt="Submit"
+                />
+                <input
+                  type="image"
+                  src="apps/notes/img/icons/delete.png"
+                  alt="Delete"
+                  onClick={() => onNoteDelete(note.id)}
+                />
+              </div>
+            </form>
+          </React.Fragment>
+        )
+
+      case "note-img":
+        return (
+          <React.Fragment>
+            <div
+              className="modal-shadowed-screen"
+              onClick={() => showHideModal(false)}
+            ></div>
+
+            <form
+              style={bgClrStyle}
+              onSubmit={this.onNoteEditSave}
+              className="note-edit-modal img-modal flex-col"
+            >
+
+              <img src={note.info.url} alt="Note image" class="modal-img" />
+
+              <div className="img-modal-content flex-col">
+                <textarea
+                  style={txtInputStyle}
+                  value={note.info.title}
+                  name="title"
+                  onChange={(ev) => onChange(ev)}
+                ></textarea>
+                <textarea
+                  style={txtInputStyle}
+                  value={note.info.txt}
+                  name="txt"
+                  onChange={(ev) => onChange(ev)}
+                ></textarea>
+
+                <NoteColorPicker changeBgClr={changeBgClr} />
+
+                <div className="modal-icons flex justify-center">
+                  <input
+                    type="image"
+                    src="apps/notes/img/icons/duplicate.png"
+                    alt="Duplicate"
+                    onClick={() => duplicateNote(note)}
+                  />
+                  <input
+                    type="image"
+                    src="apps/notes/img/icons/save.png"
+                    alt="Submit"
+                  />
+                  <input
+                    type="image"
+                    src="apps/notes/img/icons/delete.png"
+                    alt="Delete"
+                    onClick={() => onNoteDelete(note.id)}
+                  />
+                </div>
+              </div>
+            </form>
+          </React.Fragment>
+        )
+
+      case "note-vid":
+        return (
+          <React.Fragment>
+            <div
+              className="modal-shadowed-screen"
+              onClick={() => showHideModal(false)}
+            ></div>
+            <form
+              style={bgClrStyle}
+              onSubmit={this.onNoteEditSave}
+              className="note-edit-modal video-modal flex-col"
+            >
+
+              <textarea
+                style={txtInputStyle}
+                value={note.info.title}
+                name="title"
+                onChange={(ev) => onChange(ev)}
+              ></textarea>
+              <input
+                onClick={toggleVidLink}
+                className="edit-vid-link-btn"
+                type="image"
+                src="apps/notes/img/icons/link.png"
+                alt="Video link"
+              />
+              {isVidLinkShown && (
+                <textarea
+                  style={txtInputStyle}
+                  value={note.info.url}
+                  name="url"
+                  onChange={(ev) => onChange(ev)}
+                ></textarea>
+              )}
+              <iframe
+                width="370"
+                height="277.5"
+                src={`https://www.youtube.com/embed/${note.info.ytVidId}`}
+              ></iframe>
+
+              <div className="edit-color-picker flex align-center">
+                <NoteColorPicker changeBgClr={changeBgClr} />
+              </div>
+
+              <div className="modal-icons flex justify-center">
+                <input
+                  type="image"
+                  src="apps/notes/img/icons/duplicate.png"
+                  alt="Duplicate"
+                  onClick={() => duplicateNote(note)}
+                />
+                <input
+                  type="image"
+                  src="apps/notes/img/icons/save.png"
+                  alt="Submit"
+                />
+                <input
+                  type="image"
+                  src="apps/notes/img/icons/delete.png"
+                  alt="Delete"
+                  onClick={() => onNoteDelete(note.id)}
+                />
+              </div>
+            </form>
+          </React.Fragment>
+        )
+
+      case "note-todos":
+        return (
+          <React.Fragment>
+            <div
+              className="modal-shadowed-screen"
+              onClick={() => showHideModal(false)}
+            ></div>
+            <form
+              style={bgClrStyle}
+              onSubmit={this.onNoteEditSave}
+              className="note-edit-modal flex-col"
+            >
+              <textarea
+                style={txtInputStyle}
+                value={note.info.title}
+                name="title"
+                onChange={(ev) => onChange(ev)}
+              ></textarea>
+
+              {note.info.todos.map((todo) => {
+                return (
+                  <div
+                    className="modal-todo flex align-center space-between"
+                    key={`d${todo.todoId}`}
+                  >
+                    <textarea
+                      style={txtInputStyle}
+                      name="todos"
+                      key={`ti${todo.todoId}`}
+                      value={todo.txt}
+                      onChange={(ev) => onChange(ev, todo.todoId)}
+                    ></textarea>
+                    <button
+                      key={`rb${todo.todoId}`}
+                      onClick={(ev) => removeTodo(ev, todo.todoId)}
+                    >
+                      X
+                    </button>
+                  </div>
+                )
+              })}
+
+              <div className="edit-color-picker flex align-center">
+                <NoteColorPicker changeBgClr={changeBgClr} />
+              </div>
 
               <div className="modal-icons flex justify-center">
                 <input
@@ -250,143 +391,8 @@ export class NoteEditModal extends React.Component {
                   onClick={() => onNoteDelete(note.id)}
                 />
               </div>
-            </div>
-          </form>
-        )
-
-      case "note-vid":
-        return (
-          <form
-            style={bgClrStyle}
-            onSubmit={this.onNoteEditSave}
-            className="note-edit-modal video-modal flex-col"
-          >
-            <input
-              className="exit-modal-btn"
-              type="image"
-              src="apps/notes/img/icons/exit.png"
-              alt="Exit"
-              onClick={() => showHideModal(false)}
-            />
-            <textarea
-              style={txtInputStyle}
-              value={note.info.title}
-              name="title"
-              onChange={(ev) => onChange(ev)}
-            ></textarea>
-            <h3>Url:</h3>
-            <textarea
-              style={txtInputStyle}
-              value={note.info.url}
-              name="url"
-              onChange={(ev) => onChange(ev)}
-            ></textarea>
-            <iframe
-              width="370"
-              height="277.5"
-              src={`https://www.youtube.com/embed/${note.info.ytVidId}`}
-            ></iframe>
-
-            <div className="edit-color-picker flex align-center">
-              <NoteColorPicker changeBgClr={changeBgClr} />
-            </div>
-
-            <div className="modal-icons flex justify-center">
-              <input
-                type="image"
-                src="apps/notes/img/icons/duplicate.png"
-                alt="Duplicate"
-                onClick={() => duplicateNote(note)}
-              />
-              <input
-                type="image"
-                src="apps/notes/img/icons/save.png"
-                alt="Submit"
-              />
-              <input
-                type="image"
-                src="apps/notes/img/icons/delete.png"
-                alt="Delete"
-                onClick={() => onNoteDelete(note.id)}
-              />
-            </div>
-          </form>
-        )
-
-      case "note-todos":
-        return (
-          <form
-            style={bgClrStyle}
-            onSubmit={this.onNoteEditSave}
-            className="note-edit-modal flex-col"
-          >
-            <input
-              className="exit-modal-btn"
-              type="image"
-              src="apps/notes/img/icons/exit.png"
-              alt="Exit"
-              onClick={() => showHideModal(false)}
-            />
-            <textarea
-              style={txtInputStyle}
-              value={note.info.title}
-              name="title"
-              onChange={(ev) => onChange(ev)}
-            ></textarea>
-
-            {note.info.todos.map((todo) => {
-              return (
-                <div
-                  className="modal-todo flex align-center space-between"
-                  key={`d${todo.todoId}`}
-                >
-                  <textarea
-                    style={txtInputStyle}
-                    name="todos"
-                    key={`ti${todo.todoId}`}
-                    value={todo.txt}
-                    onChange={(ev) => onChange(ev, todo.todoId)}
-                  ></textarea>
-                  <button
-                    key={`rb${todo.todoId}`}
-                    onClick={(ev) => removeTodo(ev, todo.todoId)}
-                  >
-                    X
-                  </button>
-                </div>
-              )
-            })}
-
-            <div className="edit-color-picker flex align-center">
-              <NoteColorPicker changeBgClr={changeBgClr} />
-            </div>
-
-            <div className="modal-icons flex justify-center">
-              <input
-                type="image"
-                src="apps/notes/img/icons/duplicate.png"
-                alt="Duplicate"
-                onClick={() => duplicateNote(note)}
-              />
-              <input
-                type="image"
-                src="apps/notes/img/icons/add.png"
-                alt="Add"
-                onClick={addTodo}
-              />
-              <input
-                type="image"
-                src="apps/notes/img/icons/save.png"
-                alt="Submit"
-              />
-              <input
-                type="image"
-                src="apps/notes/img/icons/delete.png"
-                alt="Delete"
-                onClick={() => onNoteDelete(note.id)}
-              />
-            </div>
-          </form>
+            </form>
+          </React.Fragment>
         )
     }
   }

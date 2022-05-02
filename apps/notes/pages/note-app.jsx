@@ -80,6 +80,7 @@ export class NoteApp extends React.Component {
           notes={statusToFilter}
           onColorChange={onColorChange}
           showHideModal={showHideModal}
+          onNoteDelete={onNoteDelete}
         />
 
         <NoteEditModal

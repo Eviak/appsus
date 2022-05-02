@@ -3,6 +3,7 @@
     width: 30px;
     height: 30px;
     border: solid rgba(139, 139, 139, 0.473) 1px;
+    cursor: pointer;
 }
 
 .note-color-picker {
@@ -16,6 +17,7 @@
 }
 
 .note-color-picker .color-picker-colors {
+    margin-inline-start: 5px;
     flex-wrap: wrap;
     gap: 3px;
 }
