@@ -123,7 +123,7 @@ export class TodoNote extends React.Component {
             ></textarea>
 
 
-            <div className="list-ctrl-icons flex">
+            <div className="list-ctrl-icons flex align-center">
               <input
                 className="add-todo-btn"
                 type="image"
@@ -138,7 +138,7 @@ export class TodoNote extends React.Component {
                 alt="Save"
                 onClick={saveTodo}
               />
-            <div className="edit-color-picker flex align-center">
+            <div className="todo-edit-color-picker flex align-center">
               <NoteColorPicker changeBgClr={this.props.changeBgClr} />
             </div>
             </div>

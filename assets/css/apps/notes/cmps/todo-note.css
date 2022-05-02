@@ -35,3 +35,21 @@
 .todo-note .form-details .edit-color-picker {
     margin-bottom: 30px;
 }
+
+.todo-note .todo-edit-color-picker img {
+    margin: 0;
+}
+
+.todo-note .todo-edit-color-picker {
+    padding: 5px;
+    transition: 0.3s;
+    border: 1px solid transparent;
+}
+
+.todo-note .todo-edit-color-picker:hover {
+    margin: 0;
+    transition: 0.3s;
+    background-color: #ececec54;
+    border: 1px solid rgba(204, 204, 204, 0.377);
+    border-radius: 6px;
+}
