@@ -9,7 +9,7 @@ class _AppHeader extends React.Component {
     return (
       <header className="app-header">
         <h3 className="logo">
-          <span>M</span>.B.<span>N</span>
+          <span>M</span>.<span className="red">B</span>.<span>N</span>.
         </h3>
 
         {this.props.location.pathname.includes("/mail") && <MailFilter />}
