@@ -45,6 +45,8 @@
 
 .note-add-input input[name="title"] {
   margin-bottom: 25px;
+  font-size: 1.6rem;
+  font-weight: bold;
 }
 
 .note-add-input img {
