@@ -1,4 +1,4 @@
-@media (max-width: 995px) {
+@media (max-width: 1240px) {
     .mail-app .interface button {
         padding-left: 4px;
         border-top-left-radius: 0;
@@ -228,7 +228,7 @@
 }
 
 
-@media (min-width: 996px) {
+@media (min-width: 1241px) {
     .compose-main textarea {
         height: 443px;
     }
