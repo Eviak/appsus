@@ -87,12 +87,12 @@ export class MailApp extends React.Component {
 
 
     render() {
-        const { mails, compose } = this.state
+        const { mails, compose , menu } = this.state
         const { pathname, search } = this.props.location
         return <section className="mail-app flex">
             <label class="toggle-menu-button" onClick={this.toggleMenu}>☰</label>
             <input id="chk" type="checkbox" checked={this.state.menu} />
-            <section className="interface">
+            <section className={`interface ${menu && 'slide-right'}`}>
             <button onClick={() => this.toggleCompose(true)}>Compose</button>
                 <MailFolderList clearCriteria={this.clearCriteria} length={this.state.length} />
                 <label className="dark-label" onClick={this.toggleMenu}></label>
