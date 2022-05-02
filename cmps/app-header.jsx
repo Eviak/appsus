@@ -5,7 +5,7 @@ const { NavLink, withRouter } = ReactRouterDOM
 
 class _AppHeader extends React.Component {
   render() {
-      console.log(this.props);
+    console.log(this.props)
     return (
       <header className="app-header">
         <h3 className="logo">
@@ -15,14 +15,11 @@ class _AppHeader extends React.Component {
         {this.props.location.pathname.includes("/mail") && <MailFilter />}
 
         <nav>
-            <AppMenu />
-          <NavLink to="/" exact>
-            Home
-          </NavLink>
+          <AppMenu />
         </nav>
       </header>
     )
   }
 }
 
-export const AppHeader = withRouter(_AppHeader);
+export const AppHeader = withRouter(_AppHeader)
