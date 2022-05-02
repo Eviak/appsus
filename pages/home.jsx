@@ -3,10 +3,7 @@ const { Link } = ReactRouterDOM
 export function Home() {
   return (
     <section className="home flex-col align-center">
-      {/* <div className="image-container">
-      <img src="https://cdn.discordapp.com/attachments/598242619851800576/970398725765754931/unknown.png" alt="Background image" />
-      </div> */}
-
+  
       <h1 className="title">One account.</h1>
       <h1 className="subtitle">All the features you need.</h1>
 
@@ -38,7 +35,7 @@ export function Home() {
           <div className="about-txt">
             <h2>Eviatar Karbian</h2>
             <p>Is a full-stack rabbit which is well known for his formula of converting React and JSX into carrots.
-The hard rabbit worker built various apps throughout his career and is very recommended for hiring as a leading reabbit.
+The hard rabbit worker built various apps throughout his career and is very recommended for hiring as a leading rabbit.
             </p>
           </div>
           <div className="socials flex-col">

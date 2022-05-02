@@ -23,18 +23,31 @@
 }
 
 .logo {
-    color: white;
-    font-size: 2rem;
-    font-family: safira;
-    background-color: rgba(43, 43, 43, 0.6);
+    color: #FBBC04;
+    font-size: 3rem;
+    font-family: roboto-bold;
+    background-color: var(--read-bg);
     padding: 10px;
     margin-right: 30px;
 }
 
-.logo span {
-    font-family: adhaya;
+.logo .red{
+    color: #ff0000cb;
     font-size: 3rem;
+    font-family: roboto-bold;
 }
+
+.logo span {
+    font-family: roboto;
+    font-size: 2.5rem;
+    color: #4285F4;
+}
+
+.logo > span:nth-child(3) {
+    color: #34A853
+}
+
+
 
 .mail-filter {
     margin-right: 100px;
