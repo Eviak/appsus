@@ -129,7 +129,7 @@ export class NoteAddInput extends React.Component {
             <div className="form-details flex-col">
               <input //Note title input
                 type="text"
-                placeholder="title"
+                placeholder="Title"
                 name="title"
                 onChange={handleChange}
                 style={inputStyle}
